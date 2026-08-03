@@ -1,6 +1,7 @@
 package ifc.ibirama.trabalhobombeiros;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,15 @@ public class App extends Application {
         VBox root = new VBox();
         
         Text texto = new Text("Cadastro de Bombeiros");
+        
+        TilePane geral = new TilePane();
+        
+            geral.setHgap(10);
+            geral.setVgap(10);
+            geral.getChildren().add(new Text("teste"));
+            geral.getChildren().add(new Text("teste"));
+            geral.getChildren().add(new Text("teste"));
+        
         
         root.getChildren().add(texto);
         
