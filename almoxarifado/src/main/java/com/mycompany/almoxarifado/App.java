@@ -4,6 +4,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 
@@ -14,11 +18,14 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        GridPane root = new GridPane(); 
-        Label titulo = new Label("Tela Inicial");
+        VBox root = new VBox();    
         
-        root.add(titulo, 1, 0);
-       
+        Label titulo = new Label("Tela Inicial");
+        titulo.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 15));
+        
+        root.getChildren().add(titulo);
+        
+        
         Scene scene = new Scene(root, 640, 480);
         stage.setScene(scene);
         stage.show();
