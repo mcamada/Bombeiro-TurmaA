@@ -1,8 +1,9 @@
-package ifc.ibirama.trabalhobombeiros;
+package ifc.ibirama.projeto_de_tela;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -17,23 +18,39 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        VBox root = new VBox();
-        
-        Text texto = new Text("Cadastro de Bombeiros");
+            VBox root = new VBox();
         
         TilePane geral = new TilePane();
-        
-            geral.setHgap(10);
-            geral.setVgap(10);
-            geral.getChildren().add(new Text("teste"));
-            geral.getChildren().add(new Text("teste"));
-            geral.getChildren().add(new Text("teste"));
+            
+            geral.setHgap(100);
+            geral.setVgap(1);
+            
+            geral.setTileAlignment(Pos.CENTER_LEFT);
+            geral.getChildren().add(new Text("Nome Completo:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("Contato:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("Especialidade:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("Patente:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("Matrícula:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("Status:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("CPF:"));
+            geral.getChildren().add(new TextField(""));
+            geral.getChildren().add(new Text("Data de Nascimento:"));
+            geral.getChildren().add(new TextField(""));
+            
+        Text texto = new Text("Cadastro de Bombeiros");
         
         
         root.getChildren().add(texto);
+        root.getChildren().add(geral);
         
-        Scene scene = new Scene(root, 640, 480);
-        scene.getStylesheets().add("/css/style.css");
+        var scene = new Scene(root, 640, 480);
+        scene.getStylesheets().add("/resoucers.css/style.css");
         stage.setScene(scene);
         stage.show();
     }
