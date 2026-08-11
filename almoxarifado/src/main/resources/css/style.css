@@ -1,0 +1,31 @@
+#titulo{
+    -fx-font-family: serif;
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-color:darkblue;
+}
+
+.rotulo{
+    -fx-font-size:12px;
+    -fx-font-weight:bold;
+    -fx-color:darkblue;
+}
+.root {
+    -fx-background-color: white;
+}
+
+#btcadastrar {
+    -fx-background-color: cadetblue;
+}
+
+#btconfirmar {
+    -fx-background-color: cadetblue;
+}
+
+#btconsultar {
+    -fx-background-color: cadetblue;
+}
+
+#btcancelar {
+    -fx-background-color: cadetblue;
+}
