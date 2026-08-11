@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 
 
 /**
- * JavaFX App
+ * JavaFX Cadastro
  */
-public class App extends Application {
+public class Cadastro extends Application {
 
     @Override
     public void start(Stage stage) {
