@@ -10,15 +10,15 @@ import javafx.stage.Stage;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class Consulta extends Application {
 
     @Override
     public void start(Stage stage) {
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
 
-        var tituloCad = new Label("Cadastro Bombeiro");
-        var scene = new Scene(new StackPane(tituloCad), 640, 480);
+        var tituloCon = new Label("Consulta");
+        var scene = new Scene(new StackPane(tituloCon), 640, 480);
         stage.setScene(scene);
         stage.show();
     }
