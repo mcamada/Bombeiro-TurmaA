@@ -1,106 +1,213 @@
 package ibirama.gestaodepessoal;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class App extends Application {
+
+    ArrayList<Bombeiro> bombeiros = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {
 
-        BorderPane root = new BorderPane();
+        // Criando objetos Bombeiro
+        Bombeiro bombeiro1 = new Bombeiro(
+                "Murilo Zeferino",
+                "Soldado",
+                "Afastado"
+        );
 
-        VBox topo = new VBox();
+        Bombeiro bombeiro2 = new Bombeiro(
+                "Rian Rescarolli",
+                "Soldado",
+                "Ativo"
+        );
 
-        Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
-        titulo.setStyle("-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;");
+        Bombeiro bombeiro3 = new Bombeiro(
+                "Filipe Teske",
+                "Soldado",
+                "Ativo"
+        );
 
-        Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
-        subtitulo.setStyle("-fx-text-fill: white;");
+        Bombeiro bombeiro4 = new Bombeiro(
+                "João Peixe",
+                "Soldado",
+                "Ativo"
+        );
 
-        VBox cabecalho = new VBox(5, titulo, subtitulo);
+        // Adicionando os objetos na lista
+        bombeiros.add(bombeiro1);
+        bombeiros.add(bombeiro2);
+        bombeiros.add(bombeiro3);
+        bombeiros.add(bombeiro4);
+
+        Label titulo = new Label(
+                "Sistema de Gerenciamento de Bombeiros"
+        );
+
+        titulo.setStyle(
+                "-fx-font-size: 22px; -fx-font-weight: bold;"
+        );
+
+        Label subtitulo = new Label(
+                "Corpo de Bombeiros - Gestão de Equipes"
+        );
+
+        VBox cabecalho = new VBox(5);
         cabecalho.setPadding(new Insets(15));
-        cabecalho.setBackground(new Background(
-                new BackgroundFill(Color.DARKRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        cabecalho.getChildren().addAll(
+                titulo,
+                subtitulo
+        );
+
+        Button btnInicio = new Button(
+                "Página Principal"
+        );
+
+        Button btnCadastrar = new Button(
+                "Cadastrar Bombeiro"
+        );
+
+        Button btnConsultar = new Button(
+                "Consultar Bombeiro"
+        );
 
         HBox menu = new HBox(10);
         menu.setPadding(new Insets(10));
+        menu.getChildren().addAll(
+                btnInicio,
+                btnCadastrar,
+                btnConsultar
+        );
 
-        Button btnInicio = new Button("Página Principal");
-        Button btnCadastrar = new Button("Cadastrar Bombeiro");
-        Button btnConsultar = new Button("Consultar Bombeiro");
+        VBox topo = new VBox();
+        topo.getChildren().addAll(
+                cabecalho,
+                menu
+        );
 
-        menu.getChildren().addAll(btnInicio, btnCadastrar, btnConsultar);
+        Label total = new Label(
+                "Total de Bombeiros: " + bombeiros.size()
+        );
 
-        topo.getChildren().addAll(cabecalho, menu);
+        Label ativos = new Label(
+                "Bombeiros Ativos: 3"
+        );
 
-        root.setTop(topo);
+        Label afastados = new Label(
+                "Bombeiros Afastados: 1"
+        );
 
-        VBox centro = new VBox(20);
-        centro.setPadding(new Insets(20));
+        Label inativos = new Label(
+                "Bombeiros Inativos: 0"
+        );
 
         HBox cards = new HBox(20);
-
+        cards.setPadding(new Insets(10));
         cards.getChildren().addAll(
-                criarCard("Total de Bombeiros", "4"),
-                criarCard("Bombeiros Ativos", "3"),
-                criarCard("Bombeiros Afastados", "1"),
-                criarCard("Bombeiros Inativos", "0")
+                total,
+                ativos,
+                afastados,
+                inativos
         );
 
-        Label lblRecentes = new Label("Cadastros Recentes");
-        lblRecentes.setStyle("-fx-font-size:18px; -fx-font-weight:bold;");
-
-        ListView<String> lista = new ListView<>();
-
-        lista.getItems().addAll(
-                "Murilo Zeferino - Soldado - Afastado",
-                "Rian Rescarolli - Soldado - Ativo",
-                "Filipe Teske - Soldado - Ativo",
-                "João Peixe - Soldado - Ativo"
+        Label recentes = new Label(
+                "Cadastros Recentes"
         );
 
-        centro.getChildren().addAll(cards, lblRecentes, lista);
+        recentes.setStyle(
+                "-fx-font-size: 18px; -fx-font-weight: bold;"
+        );
 
-        root.setCenter(centro);
+        // Agora a ListView trabalha com objetos Bombeiro
+        ListView<Bombeiro> lista = new ListView<>();
 
-        Scene scene = new Scene(root, 1050, 600);
+        lista.getItems().addAll(bombeiros);
 
-        stage.setTitle("Sistema de Bombeiros");
+        VBox centro = new VBox(15);
+        centro.setPadding(new Insets(20));
+        centro.getChildren().addAll(
+                cards,
+                recentes,
+                lista
+        );
+
+        BorderPane tela = new BorderPane();
+
+        tela.setTop(topo);
+        tela.setCenter(centro);
+
+        Scene scene = new Scene(
+                tela,
+                1050,
+                600
+        );
+
+        stage.setTitle(
+                "Sistema de Bombeiros"
+        );
+
         stage.setScene(scene);
+
+        EventHandler<MouseEvent> eh =
+                new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                Stage cadastro = new Stage();
+
+                VBox rootCadastro = new VBox();
+
+                rootCadastro.setPadding(
+                        new Insets(20)
+                );
+
+                rootCadastro.getChildren().add(
+                        new Label("Cadastro de Bombeiro")
+                );
+
+                Scene cenarioCadastro =
+                        new Scene(
+                                rootCadastro,
+                                300,
+                                200
+                        );
+
+                cadastro.setTitle(
+                        "Cadastrar Bombeiro"
+                );
+
+                cadastro.setScene(
+                        cenarioCadastro
+                );
+
+                cadastro.show();
+            }
+        };
+
+        btnCadastrar.addEventHandler(
+                MouseEvent.MOUSE_CLICKED,
+                eh
+        );
+
         stage.show();
     }
 
-    private VBox criarCard(String titulo, String valor) {
-
-        Label lblTitulo = new Label(titulo);
-        lblTitulo.setStyle("-fx-font-size:16px;");
-
-        Label lblValor = new Label(valor);
-        lblValor.setStyle("-fx-font-size:30px; -fx-font-weight:bold;");
-
-        VBox card = new VBox(15, lblTitulo, lblValor);
-        card.setPadding(new Insets(15));
-        card.setPrefSize(220, 120);
-
-        card.setStyle(
-                "-fx-background-color:white;" +
-                "-fx-border-color:lightgray;" +
-                "-fx-border-radius:5;" +
-                "-fx-background-radius:5;"
-        );
-
-        return card;
-    }
-
     public static void main(String[] args) {
+
         launch(args);
     }
 }
