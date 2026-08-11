@@ -3,7 +3,10 @@ package ifc.ibirama.projeto_de_tela;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -19,7 +22,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
             VBox root = new VBox();
-        
+          
         TilePane geral = new TilePane();
             
             geral.setHgap(100);
@@ -45,9 +48,14 @@ public class App extends Application {
             
         Text texto = new Text("Cadastro de Bombeiros");
         
+        ButtonBar botoes = new ButtonBar();
         
-        root.getChildren().add(texto);
-        root.getChildren().add(geral);
+        Button cadastrar = new Button("Cadastrar");
+        Button cancelar = new Button("Cancelar");
+        
+        botoes.getButtons().addAll(cadastrar, cancelar);
+        
+        root.getChildren().addAll(texto, geral, botoes);
         
         var scene = new Scene(root, 640, 480);
         scene.getStylesheets().add("/resoucers.css/style.css");
