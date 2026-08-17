@@ -5,8 +5,8 @@
 package ibiramaifc.cadastrobombeiro;
 
 import javafx.application.Application;
-import java.awt.Button;
-import java.awt.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar;
