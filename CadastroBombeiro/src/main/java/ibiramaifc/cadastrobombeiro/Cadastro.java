@@ -1,30 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ibiramaifc.cadastrobombeiro;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 
 /**
- * JavaFX Cadastro
+ *
+ * @author aluno
  */
-public class Cadastro extends Application {
-
-    @Override
-    public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
-
-        var tituloCad = new Label("Cadastro Bombeiro");
-        var scene = new Scene(new StackPane(tituloCad), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
-    }
-
+public class Cadastro{
+    
+    public static ArrayList<Bombeiro> listaBombeiros = new ArrayList<>();
+    
+    Label titulo = new Label("SISTEMA DE BOMBEIROS");
+    
 }
