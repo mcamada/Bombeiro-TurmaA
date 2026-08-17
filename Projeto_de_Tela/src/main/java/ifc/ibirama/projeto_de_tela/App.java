@@ -1,12 +1,14 @@
 package ifc.ibirama.projeto_de_tela;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -20,7 +22,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws InterruptedException {
             VBox root = new VBox();
           
         TilePane geral = new TilePane();
@@ -57,12 +59,40 @@ public class App extends Application {
         
         root.getChildren().addAll(texto, geral, botoes);
         
+        EventHandler<MouseEvent> naoCancelar = new EventHandler<MouseEvent>(){
+        @Override
+        public void handle(MouseEvent event) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Seu Login nao exite. Cadastre-se primeiro.");
+            alert.show();
+            
+            event.consume();
+            }
+        };
+        
+        EventHandler<MouseEvent> testee = new EventHandler<MouseEvent>(){
+        @Override
+        public void handle(MouseEvent event) {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setHeaderText("Cadastrado.");
+            alerta.show();
+            
+            var consultaBombeiros = new Scene(root, 640, 480);
+            stage.setScene(consultaBombeiros);
+            stage.show();
+            event.consume();
+            }
+        };
+        
+        cadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, testee);
+        cancelar.addEventHandler(MouseEvent.MOUSE_CLICKED, naoCancelar);
+        
         var scene = new Scene(root, 640, 480);
         scene.getStylesheets().add("/resoucers.css/style.css");
         stage.setScene(scene);
         stage.show();
     }
-
+ 
     public static void main(String[] args) {
         launch();
     }
