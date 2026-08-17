@@ -4,6 +4,7 @@
  */
 package ibiramaifc.cadastrobombeiro;
 
+import javafx.application.Application;
 import java.awt.Button;
 import java.awt.Label;
 import java.util.ArrayList;
@@ -16,10 +17,11 @@ import javafx.stage.Stage;
  *
  * @author aluno
  */
-public class Cadastro {
+public class Cadastro extends Application {
 
     public static ArrayList<Bombeiro> listaBombeiros = new ArrayList<>();
 
+    @Override
     public void start(Stage Cadastro) {
 
         VBox root = new VBox();
@@ -29,7 +31,7 @@ public class Cadastro {
         Button btCadastro = new Button("cadastrar bombeiro");
         Button btPesquisa = new Button("Pesquisar bombeiro");
         Button btAtualizar = new Button("atualizar bombeiro");
-        
+
         ButtonBar painelBt = new ButtonBar();
         painelBt.getButtons().addAll(btCadastro, btPesquisa, btAtualizar);
         root.getChildren().add(painelBt);
