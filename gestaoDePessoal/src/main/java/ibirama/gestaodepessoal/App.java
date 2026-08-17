@@ -47,7 +47,7 @@ public class App extends Application {
 
         HBox menu = new HBox(10);
         menu.setPadding(new Insets(10));
-        menu.getChildren().addAll(btnInicio,btnCadastrar,btnConsultar);
+        menu.getChildren().addAll(btnInicio, btnCadastrar, btnConsultar);
 
         VBox topo = new VBox();
         topo.getChildren().addAll(cabecalho, menu);
@@ -81,26 +81,62 @@ public class App extends Application {
         stage.setTitle("Sistema de Bombeiros");
         stage.setScene(scene);
 
-        EventHandler<MouseEvent> eh = new EventHandler<MouseEvent>() {
+        EventHandler<MouseEvent> telaCadastro = new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
 
-                Stage cadastro = new Stage();
+                Stage cadastrar = new Stage();
 
-                VBox rootCadastro = new VBox();
-                rootCadastro.setPadding(new Insets(20));
-                rootCadastro.getChildren().add(new Label("Cadastro de Bombeiro"));
+                BorderPane rootCadastrar = new BorderPane();
+                // Quadrado no meio da tela com as informações d cadastro
 
-                Scene cenarioCadastro = new Scene(rootCadastro, 300, 200);
+                Scene cenarioCadastrar = new Scene(rootCadastrar, 1050, 600);
 
-                cadastro.setTitle("Cadastrar Bombeiro");
-                cadastro.setScene(cenarioCadastro);
-                cadastro.show();
+                cadastrar.setTitle("Cadastrar Bombeiro");
+                cadastrar.setScene(cenarioCadastrar);
+                cadastrar.show();
             }
         };
+        btnCadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaCadastro);
 
-        btnCadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, eh);
+        EventHandler<MouseEvent> telaConsulta = new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+
+                Stage consultar = new Stage();
+
+                Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
+                titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+
+                Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
+
+                VBox cabecalho = new VBox(5);
+                cabecalho.setPadding(new Insets(15));
+                cabecalho.getChildren().addAll(titulo, subtitulo);
+
+                Button btnInicio = new Button("Página Principal");
+                Button btnCadastrar = new Button("Cadastrar Bombeiro");
+                Button btnConsultar = new Button("Consultar Bombeiro");
+
+                HBox menu = new HBox(10);
+                menu.setPadding(new Insets(10));
+                menu.getChildren().addAll(btnInicio, btnCadastrar, btnConsultar);
+
+                VBox rootConsultar = new VBox();
+                // Quadrado d cima para pesquisar
+
+                //VBox rootConsultar = new VBox();
+
+                Scene cenarioConsultar = new Scene(rootConsultar, 1050, 600);
+
+                consultar.setTitle("Cadastrar Bombeiro");
+                consultar.setScene(cenarioConsultar);
+                consultar.show();
+            }
+        };
+        btnCadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaConsulta);
 
         stage.show();
     }
@@ -110,4 +146,3 @@ public class App extends Application {
         launch(args);
     }
 }
-
