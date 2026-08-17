@@ -4,18 +4,39 @@
  */
 package ibiramaifc.cadastrobombeiro;
 
-
+import java.awt.Button;
+import java.awt.Label;
 import java.util.ArrayList;
-
+import javafx.scene.Scene;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
  * @author aluno
  */
-public class Cadastro{
-    
+public class Cadastro {
+
     public static ArrayList<Bombeiro> listaBombeiros = new ArrayList<>();
-    
-    Label titulo = new Label("SISTEMA DE BOMBEIROS");
-    
+
+    public void start(Stage Cadastro) {
+
+        VBox root = new VBox();
+
+        Label titulo = new Label("SISTEMA DE BOMBEIROS");
+
+        Button btCadastro = new Button("cadastrar bombeiro");
+        Button btPesquisa = new Button("Pesquisar bombeiro");
+        Button btAtualizar = new Button("atualizar bombeiro");
+        
+        ButtonBar painelBt = new ButtonBar();
+        painelBt.getButtons().addAll(btCadastro, btPesquisa, btAtualizar);
+        root.getChildren().add(painelBt);
+
+        Scene scene = new Scene(root, 800, 600);
+        Cadastro.setScene(scene);
+        Cadastro.setTitle("Sistema de Teste do JavaFX");
+        Cadastro.show();
+    }
 }
