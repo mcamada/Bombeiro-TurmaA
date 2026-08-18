@@ -11,114 +11,160 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CadastroViatura {
+public class CadastroViatura{
 
-    public void start(Stage stage) {
+    private Viatura viatura;
 
-        VBox root = new VBox(10);
+    public CadastroViatura(){
+        this.viatura=null;
+    }
+
+    public CadastroViatura(Viatura viatura){
+        this.viatura=viatura;
+    }
+
+    public void start(Stage stage){
+
+        VBox root=new VBox(10);
         root.setPadding(new Insets(10));
 
-        Label titulo = new Label("Cadastrar Viatura");
+        Label titulo=new Label();
 
-        GridPane formulario = new GridPane();
+        if(viatura==null){
+            titulo.setText("Cadastrar Viatura");
+        }else{
+            titulo.setText("Editar Viatura");
+        }
+
+        GridPane formulario=new GridPane();
         formulario.setHgap(20);
         formulario.setVgap(10);
 
-        Label prefixo = new Label("Prefixo");
-        TextField txtPrefixo = new TextField();
+        Label prefixo=new Label("Prefixo");
+        TextField txtPrefixo=new TextField();
         txtPrefixo.setPromptText("Ex: VT-01");
 
-        Label tipo = new Label("Tipo");
-        ComboBox<String> cbTipo = new ComboBox<>();
-        cbTipo.getItems().addAll(
-                "Combate a incêndio",
-                "Resgate",
-                "Ambulância"
-        );
-        cbTipo.setValue("Combate a incêndio");
+        Label tipo=new Label("Tipo");
+        ComboBox<String> cbTipo=new ComboBox<>();
 
-        Label placa = new Label("Placa");
-        TextField txtPlaca = new TextField();
+        cbTipo.getItems().addAll("Combate a incendio","Resgate","Ambulancia");
+        cbTipo.setValue("Combate a incendio");
+
+        Label placa=new Label("Placa");
+        TextField txtPlaca=new TextField();
         txtPlaca.setPromptText("AAA-1234");
 
-        Label ano = new Label("Ano");
-        ComboBox<String> cbAno = new ComboBox<>();
-        cbAno.getItems().addAll(
-                "2026",
-                "2025",
-                "2024",
-                "2023",
-                "2022",
-                "2021",
-                "2020"
-        );
+        Label ano=new Label("Ano");
+        ComboBox<String> cbAno=new ComboBox<>();
+
+        cbAno.getItems().addAll("2026","2025","2024","2023","2022","2021","2020");
         cbAno.setValue("2023");
 
-        Label modelo = new Label("Modelo");
-        TextField txtModelo = new TextField();
+        Label modelo=new Label("Modelo");
+        TextField txtModelo=new TextField();
 
-        Label status = new Label("Status");
-        ComboBox<String> cbStatus = new ComboBox<>();
-        cbStatus.getItems().addAll(
-                "Disponível",
-                "Em manutenção",
-                "Indisponível"
-        );
-        cbStatus.setValue("Disponível");
+        Label status=new Label("Status");
+        ComboBox<String> cbStatus=new ComboBox<>();
 
-        Label local = new Label("Localização");
-        TextField txtLocal = new TextField();
+        cbStatus.getItems().addAll("Disponivel","Em manutencao","Indisponivel");
+        cbStatus.setValue("Disponivel");
 
-        formulario.add(prefixo, 0, 0);
-        formulario.add(txtPrefixo, 0, 1);
+        Label local=new Label("Localizacao");
+        TextField txtLocal=new TextField();
 
-        formulario.add(tipo, 1, 0);
-        formulario.add(cbTipo, 1, 1);
+        if(viatura!=null){
+            txtPrefixo.setText(viatura.getPrefixo());
+            txtPlaca.setText(viatura.getPlaca());
+            txtModelo.setText(viatura.getModelo());
+            txtLocal.setText(viatura.getLocal());
+            cbAno.setValue(viatura.getAno());
+            cbTipo.setValue(viatura.getTipo());
+            cbStatus.setValue(viatura.getStatus());
+        }
 
-        formulario.add(placa, 0, 2);
-        formulario.add(txtPlaca, 0, 3);
+        formulario.add(prefixo,0,0);
+        formulario.add(txtPrefixo,0,1);
 
-        formulario.add(ano, 1, 2);
-        formulario.add(cbAno, 1, 3);
+        formulario.add(tipo,1,0);
+        formulario.add(cbTipo,1,1);
 
-        formulario.add(modelo, 0, 4);
-        formulario.add(txtModelo, 0, 5);
+        formulario.add(placa,0,2);
+        formulario.add(txtPlaca,0,3);
 
-        formulario.add(status, 1, 4);
-        formulario.add(cbStatus, 1, 5);
+        formulario.add(ano,1,2);
+        formulario.add(cbAno,1,3);
 
-        formulario.add(local, 0, 6);
-        formulario.add(txtLocal, 0, 7);
+        formulario.add(modelo,0,4);
+        formulario.add(txtModelo,0,5);
 
-        HBox botoes = new HBox(10);
+        formulario.add(status,1,4);
+        formulario.add(cbStatus,1,5);
 
-        Button cancelar = new Button("Cancelar");
-        Button cadastrar = new Button("Cadastrar");
+        formulario.add(local,0,6);
+        formulario.add(txtLocal,0,7);
 
-        cancelar.setOnAction(e -> {
-            App app = new App();
+        HBox botoes=new HBox(10);
+
+        Button cancelar=new Button("Cancelar");
+        Button salvar=new Button();
+
+        if(viatura==null){
+            salvar.setText("Cadastrar");
+        }else{
+            salvar.setText("Salvar Alteracoes");
+        }
+
+        cancelar.setOnAction(e->{
+            App app=new App();
             app.start(new Stage());
             stage.close();
         });
 
-        cadastrar.setOnAction(e -> {
-            App app = new App();
+        salvar.setOnAction(e->{
+
+            if(viatura==null){
+
+                Viatura novaViatura=new Viatura(
+                        txtPrefixo.getText(),
+                        txtPlaca.getText(),
+                        txtModelo.getText(),
+                        cbAno.getValue(),
+                        txtLocal.getText(),
+                        cbTipo.getValue(),
+                        cbStatus.getValue(),
+                        "0 Manutencoes"
+                );
+
+            }else{
+
+                viatura.setPrefixo(txtPrefixo.getText());
+                viatura.setPlaca(txtPlaca.getText());
+                viatura.setModelo(txtModelo.getText());
+                viatura.setAno(cbAno.getValue());
+                viatura.setLocal(txtLocal.getText());
+                viatura.setTipo(cbTipo.getValue());
+                viatura.setStatus(cbStatus.getValue());
+            }
+
+            App app=new App();
             app.start(new Stage());
             stage.close();
         });
 
-        botoes.getChildren().addAll(cancelar, cadastrar);
+        botoes.getChildren().addAll(cancelar,salvar);
 
-        root.getChildren().addAll(
-                titulo,
-                formulario,
-                botoes
-        );
+        root.getChildren().addAll(titulo,formulario,botoes);
 
-        Scene scene = new Scene(root, 900, 600);
+        Scene scene=new Scene(root,900,600);
 
         stage.setScene(scene);
-        stage.setTitle("Cadastrar Viatura");
+
+        if(viatura==null){
+            stage.setTitle("Cadastrar Viatura");
+        }else{
+            stage.setTitle("Editar Viatura");
+        }
+
         stage.show();
     }
 }
