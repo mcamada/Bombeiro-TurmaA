@@ -1,49 +1,86 @@
 package com.mycompany.projetojavafx;
-
 import javafx.application.Application;
+import javafx.scene.control.TextField;
 import static javafx.application.Application.launch;
-import javafx.scene.control.Button;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-
+    TextField   txtld;
+    TextField   txtNascimento;
+    TextField   txtNome;
+    TextField   txtEspecialidade;
+    TextField   txtMatricula;
+    TextField   txtPatente;
+    TextField   txtContato;
+    TextField   txtStatus;
+    TextField   txtCpf;
+    
     @Override
     public void start(Stage stage) {
-        VBox root = new VBox();
+        
+        Label titulo = new Label("Cadastro de bombeiros:");
 
-        Label titulo = new Label("Cadastro de bombeiros");
-        Label Identificador = new Label("Identificador do bombeiro");
-        Label DataNascimento = new Label("Data de nascimento");
-        Label Nome = new Label ("Nome completo");
-        Label Especialidade = new Label ("Especialidade");
-        Label Matricula = new Label ("Matrícula");
-        Label Patente = new Label ("Patente");
-        Label Contato = new Label ("Contato");
-        Label Status = new Label ("Status");
-        Label CPF = new Label ("CPF");
+        titulo.setStyle(
+                "-fx-font-size: 30px;"
+                + "-fx-text-fill: black;"
+        );
+        
+        txtld = new TextField();
+        txtNascimento = new TextField();
+        txtNome = new TextField();
+        txtEspecialidade = new TextField();
+        txtMatricula = new TextField();
+        txtPatente = new TextField();
+        txtContato = new TextField();
+        txtStatus = new TextField();
+        txtCpf = new TextField();
+        
+        Label lId = new Label("Identificador do bombeiro:");
+        Label lNascimento = new Label("Data de nascimento:");
+        Label lNome = new Label("Nome completo:");
+        Label lEspecialidade = new Label("Especialidade:");
+        Label lMatricula = new Label("Matrícula:");
+        Label lPatente = new Label("Patente:");
+        Label lContato = new Label("Contato:");
+        Label lStatus = new Label("Status:");
+        Label lCpf = new Label("CPF:");
+        
+        GridPane formulario = new GridPane();
+        
+        formulario.add(lId, 0, 0);
+        formulario.add(txtld, 1, 0);
 
-        root.getChildren().add(titulo);
-        root.getChildren().add(Identificador);
-        root.getChildren().add(DataNascimento);
-        root.getChildren().add(Nome);
-        root.getChildren().add(Especialidade);
-        root.getChildren().add(Matricula);
-        root.getChildren().add(Patente);
-        root.getChildren().add(Contato);
-        root.getChildren().add(Status);
-        root.getChildren().add(CPF);
+        formulario.add(lNascimento, 0, 1);
+        formulario.add(txtNascimento, 1, 1);
         
-        Menu file = new Menu("Novo");
-        Menu view = new Menu("View");
+        formulario.add(lNome, 0, 2);
+        formulario.add(txtNome, 1, 2);
         
-        Button botao1 = new Button("Cadastrar");
-        Button botao2 = new Button("Cancelar");
+        formulario.add(lEspecialidade, 0, 3);
+        formulario.add(txtEspecialidade, 1, 3);
         
-        root.getChildren().add(botao1);
-        root.getChildren().add(botao2);
+        formulario.add(lMatricula, 0, 4);
+        formulario.add(txtMatricula, 1, 4);
+        
+        formulario.add(lPatente, 0, 5);
+        formulario.add(txtPatente, 1, 5);
+        
+        formulario.add(lContato, 0, 6);
+        formulario.add(txtContato, 1, 6);
+        
+        formulario.add(lStatus, 0, 7);
+        formulario.add(txtStatus, 1, 7);
+        
+        formulario.add(lCpf, 0, 8);
+        formulario.add(txtCpf, 1, 8);
+        
+        formulario.setAlignment(Pos.CENTER);
+        
+
+        
 
         stage.show();
 
