@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import javafx.stage.Modality;
 
 public class App extends Application {
 
@@ -32,45 +33,44 @@ public class App extends Application {
         bombeiros.add(bombeiro3);
         bombeiros.add(bombeiro4);
 
-        Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
-        titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
-
-        Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
+        VBox root = new VBox();
 
         VBox cabecalho = new VBox(5);
+        Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
+        titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+        Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
         cabecalho.setPadding(new Insets(15));
         cabecalho.getChildren().addAll(titulo, subtitulo);
-
-        Button btnInicio = new Button("Página Principal");
-        Button btnCadastrar = new Button("Cadastrar Bombeiro");
-        Button btnConsultar = new Button("Consultar Bombeiro");
+        root.getChildren().add(cabecalho);
 
         HBox menu = new HBox(10);
         menu.setPadding(new Insets(10));
-        menu.getChildren().addAll(btnInicio, btnCadastrar, btnConsultar);
+        Button btnCadastrar = new Button("Cadastrar Bombeiro");
+        Button btnConsultar = new Button("Consultar Bombeiro");
+        menu.getChildren().addAll(btnCadastrar, btnConsultar);
+        root.getChildren().add(menu);
 
         VBox topo = new VBox();
         topo.getChildren().addAll(cabecalho, menu);
+        root.getChildren().add(topo);
 
+        HBox cards = new HBox(20);
+        cards.setPadding(new Insets(10));
         Label total = new Label("Total de Bombeiros: " + bombeiros.size());
         Label ativos = new Label("Bombeiros Ativos: 3");
         Label afastados = new Label("Bombeiros Afastados: 1");
         Label inativos = new Label("Bombeiros Inativos: 0");
-
-        HBox cards = new HBox(20);
-        cards.setPadding(new Insets(10));
         cards.getChildren().addAll(total, ativos, afastados, inativos);
-
-        Label recentes = new Label("Cadastros Recentes");
-        recentes.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-
-        ListView<Bombeiro> lista = new ListView<>();
-
-        lista.getItems().addAll(bombeiros);
+        root.getChildren().add(cards);
 
         VBox centro = new VBox(15);
         centro.setPadding(new Insets(20));
+        ListView<Bombeiro> lista = new ListView<>();
+        Label recentes = new Label("Cadastros Recentes");
+        recentes.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+        lista.getItems().addAll(bombeiros);
         centro.getChildren().addAll(cards, recentes, lista);
+        root.getChildren().add(centro);
 
         BorderPane tela = new BorderPane();
         tela.setTop(topo);
@@ -87,15 +87,25 @@ public class App extends Application {
             public void handle(MouseEvent event) {
 
                 Stage cadastrar = new Stage();
+                cadastrar.initModality(Modality.APPLICATION_MODAL);
+                
+                VBox rootCadastrar = new VBox();
+                
+                VBox cabecalho = new VBox(5);
+                Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
+                titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+                Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
+                cabecalho.setPadding(new Insets(15));
+                cabecalho.getChildren().addAll(titulo, subtitulo);
+                rootCadastrar.getChildren().add(cabecalho);
+                
+                BorderPane areaCadastro = new BorderPane();
+                
+                Scene cenarioCadastro = new Scene(rootCadastrar, 1050, 600);
 
-                BorderPane rootCadastrar = new BorderPane();
-                // Quadrado no meio da tela com as informações d cadastro
+                cadastrar.setScene(cenarioCadastro);
 
-                Scene cenarioCadastrar = new Scene(rootCadastrar, 1050, 600);
-
-                cadastrar.setTitle("Cadastrar Bombeiro");
-                cadastrar.setScene(cenarioCadastrar);
-                cadastrar.show();
+                cadastrar.showAndWait();
             }
         };
         btnCadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaCadastro);
@@ -106,37 +116,17 @@ public class App extends Application {
             public void handle(MouseEvent event) {
 
                 Stage consultar = new Stage();
-
-                Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
-                titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
-
-                Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
-
-                VBox cabecalho = new VBox(5);
-                cabecalho.setPadding(new Insets(15));
-                cabecalho.getChildren().addAll(titulo, subtitulo);
-
-                Button btnInicio = new Button("Página Principal");
-                Button btnCadastrar = new Button("Cadastrar Bombeiro");
-                Button btnConsultar = new Button("Consultar Bombeiro");
-
-                HBox menu = new HBox(10);
-                menu.setPadding(new Insets(10));
-                menu.getChildren().addAll(btnInicio, btnCadastrar, btnConsultar);
-
+                consultar.initModality(Modality.APPLICATION_MODAL);
                 VBox rootConsultar = new VBox();
-                // Quadrado d cima para pesquisar
+                rootConsultar.getChildren().add(new Label("Teste"));
+                Scene cenarioCadastro = new Scene(rootConsultar, 1050, 600);
 
-                //VBox rootConsultar = new VBox();
+                consultar.setScene(cenarioCadastro);
 
-                Scene cenarioConsultar = new Scene(rootConsultar, 1050, 600);
-
-                consultar.setTitle("Cadastrar Bombeiro");
-                consultar.setScene(cenarioConsultar);
-                consultar.show();
+                consultar.showAndWait();
             }
         };
-        btnCadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaConsulta);
+        btnConsultar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaConsulta);
 
         stage.show();
     }
