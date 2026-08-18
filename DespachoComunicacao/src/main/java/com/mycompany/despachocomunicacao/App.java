@@ -2,105 +2,105 @@ package com.mycompany.despachocomunicacao;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         BorderPane root = new BorderPane();
 
-        HBox topBar = new HBox();
-        topBar.setPadding(new Insets(15));
-        topBar.setSpacing(20);
-        topBar.setAlignment(Pos.CENTER_LEFT);
-
-        Label title = new Label("Sistema CAD - Corpo de Bombeiros\nDespacho e Comunicação");
-        
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
+        BorderPane topBar = new BorderPane();
+        Label title = new Label("Sistema CAD - Corpo de Bombeiros");
         Button btnNovaOcorrencia = new Button("+ Nova Ocorrencia");
-        
-        btnNovaOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-            }
-        });
 
-        topBar.getChildren().addAll(title, spacer, btnNovaOcorrencia);
+//        btnNovaOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                NovaOcorrencia nova = new NovaOcorrencia();
+//                nova.abrir();
+//            }
+//        });
+
+        topBar.setLeft(title);
+        topBar.setRight(btnNovaOcorrencia);
 
         VBox mainContainer = new VBox();
-        mainContainer.setPadding(new Insets(20));
-        mainContainer.setSpacing(20);
 
-        HBox navBar = new HBox();
-        navBar.setSpacing(15);
-
+        ButtonBar navBar = new ButtonBar();
         Button btnDashboard = new Button("Dashboard");
         Button btnOcorrencia = new Button("Ocorrencia");
         Button btnRecursos = new Button("Recursos");
         Button btnComunicacoes = new Button("Comunicações");
 
-        navBar.getChildren().addAll(btnDashboard, btnOcorrencia, btnRecursos, btnComunicacoes);
+//        btnOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                Ocorrencias janela = new Ocorrencias();
+//                janela.abrir();
+//            }
+//        });
 
-        VBox dashboardView = new VBox(30);
-        dashboardView.setPadding(new Insets(20, 0, 0, 0));
+//        btnRecursos.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                Recursos janela = new Recursos();
+//                janela.abrir();
+//            }
+//        });
 
-        HBox statsTop = new HBox(15);
-        statsTop.getChildren().addAll(
-                createStatCard("Total:", "0"),
-                createStatCard("Abertas:", "0"),
-                createStatCard("Despachadas:", "0"),
-                createStatCard("Em Atendimento:", "0"),
-                createStatCard("Finalizadas:", "0"),
-                createStatCard("Alta Prioridade:", "0")
-        );
+//        btnComunicacoes.setOnMouseClicked(new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                Comunicacoes janela = new Comunicacoes();
+//                janela.abrir();
+//            }
+//        });
 
-        HBox statsBottom = new HBox(15);
-        statsBottom.getChildren().addAll(
-                createStatCard("Incêndios:", "0"),
-                createStatCard("Resgates:", "0"),
-                createStatCard("Pré-Hospitalar:", "0"),
-                createStatCard("Ações Comunitárias:", "0")
-        );
+        navBar.getButtons().addAll(btnDashboard, btnOcorrencia, btnRecursos, btnComunicacoes);
 
-        dashboardView.getChildren().addAll(statsTop, statsBottom);
+        VBox dashboardView = new VBox();
+        dashboardView.setAlignment(Pos.CENTER); // Centraliza a VBox inteira
+        dashboardView.setSpacing(20); // Espaçamento entre a linha de cima e a de baixo
 
-        mainContainer.getChildren().addAll(navBar, dashboardView);
+        HBox statsTop = new HBox();
+        statsTop.setAlignment(Pos.CENTER); // Centraliza os textos na primeira linha
+        statsTop.getChildren().add(new Label("Total: 0    "));
+        statsTop.getChildren().add(new Label("Abertas: 0    "));
+        statsTop.getChildren().add(new Label("Despachadas: 0    "));
+        statsTop.getChildren().add(new Label("Em Atendimento: 0    "));
+        statsTop.getChildren().add(new Label("Finalizadas: 0    "));
+        statsTop.getChildren().add(new Label("Alta Prioridade: 0    "));
+
+        HBox statsBottom = new HBox();
+        statsBottom.setAlignment(Pos.CENTER); // Centraliza os textos na segunda linha
+        statsBottom.getChildren().add(new Label("Incêndios: 0    "));
+        statsBottom.getChildren().add(new Label("Resgates: 0    "));
+        statsBottom.getChildren().add(new Label("Pré-Hospitalar: 0    "));
+        statsBottom.getChildren().add(new Label("Ações Comunitárias: 0    "));
+
+        dashboardView.getChildren().add(statsTop);
+        dashboardView.getChildren().add(statsBottom);
+
+        mainContainer.getChildren().add(navBar);
+        mainContainer.getChildren().add(dashboardView);
 
         root.setTop(topBar);
         root.setCenter(mainContainer);
 
-        Scene scene = new Scene(root, 1000, 600);
-        primaryStage.setTitle("Sistema CAD - Corpo de Bombeiros");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-
-    private VBox createStatCard(String title, String value) {
-        VBox card = new VBox(10);
-        card.setPadding(new Insets(15));
-        card.setStyle("-fx-border-color: black;");
-        card.setPrefWidth(150);
-        card.setPrefHeight(80);
-        
-        Label lblTitle = new Label(title);
-        Label lblValue = new Label(value);
-        
-        card.getChildren().addAll(lblTitle, lblValue);
-        return card;
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Sistema CAD - Corpo de Bombeiros");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {
