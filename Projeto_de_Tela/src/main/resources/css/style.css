@@ -1,0 +1,13 @@
+/*
+  Feito por VineC4rr91 e Txuli - Vulgo Vinícius Martins e Anthony Txuli dos Santos Lemes Martins
+  Espero que esteja nota 10!
+ */
+
+.root {
+    -fx-border-color: red;
+    -fx-text-align: center;
+}
+
+.label {
+    -fx-border-color: red;
+}
