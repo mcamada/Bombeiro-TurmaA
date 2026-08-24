@@ -12,8 +12,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
+import static javafx.application.Application.launch;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 
 public class App extends Application {
@@ -88,9 +90,9 @@ public class App extends Application {
 
                 Stage cadastrar = new Stage();
                 cadastrar.initModality(Modality.APPLICATION_MODAL);
-                
+
                 VBox rootCadastrar = new VBox();
-                
+
                 VBox cabecalho = new VBox(5);
                 Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
                 titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
@@ -98,9 +100,7 @@ public class App extends Application {
                 cabecalho.setPadding(new Insets(15));
                 cabecalho.getChildren().addAll(titulo, subtitulo);
                 rootCadastrar.getChildren().add(cabecalho);
-                
-                BorderPane areaCadastro = new BorderPane();
-                
+
                 Scene cenarioCadastro = new Scene(rootCadastrar, 1050, 600);
 
                 cadastrar.setScene(cenarioCadastro);
@@ -117,15 +117,66 @@ public class App extends Application {
 
                 Stage consultar = new Stage();
                 consultar.initModality(Modality.APPLICATION_MODAL);
-                VBox rootConsultar = new VBox();
-                rootConsultar.getChildren().add(new Label("Teste"));
-                Scene cenarioCadastro = new Scene(rootConsultar, 1050, 600);
 
-                consultar.setScene(cenarioCadastro);
+                VBox rootConsultar = new VBox(15);
+
+                VBox nomeBox = new VBox(5);
+
+                Label titulo = new Label("Consultar Bombeiros");
+                titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
+                Label subtitulo = new Label("Pesquise e gerencie os bombeiros cadastrados no sistema");
+                Label labelNome = new Label("Nome");
+                TextField campoNome = new TextField();
+                campoNome.setPromptText("Buscar por nome...");
+
+                nomeBox.getChildren().addAll(labelNome, campoNome);
+
+                HBox filtros = new HBox(15);
+                rootConsultar.setPadding(new Insets(20));
+
+                VBox patenteBox = new VBox(5);
+
+                Label labelPatente = new Label("Patente");
+                ComboBox<String> comboPatente = new ComboBox<>();
+                comboPatente.getItems().addAll("Todas", "Soldado", "Cabo", "Sargento", "Capitao");
+                comboPatente.setValue("Todas");
+
+                patenteBox.getChildren().addAll(labelPatente, comboPatente);
+
+                VBox statusBox = new VBox(5);
+
+                Label labelStatus = new Label("Status");
+
+                ComboBox<String> comboStatus = new ComboBox<>();
+                comboStatus.getItems().addAll("Todos", "Ativo", "Afastado", "Inativo");
+                comboStatus.setValue("Todos");
+
+                statusBox.getChildren().addAll(labelStatus, comboStatus);
+
+                filtros.getChildren().addAll(nomeBox, patenteBox, statusBox);
+
+                ListView<Bombeiro> lista = new ListView<>();
+
+                lista.getItems().addAll(bombeiros);
+
+                HBox botoes = new HBox(10);
+
+                Button btnPesquisar = new Button("Pesquisar");
+                Button btnLimpar = new Button("Limpar");
+                Button btnFechar = new Button("Fechar");
+
+                botoes.getChildren().addAll(btnPesquisar, btnLimpar, btnFechar);
+
+                rootConsultar.getChildren().addAll(titulo, subtitulo, filtros, botoes, lista);
+
+                Scene cenarioConsulta = new Scene(rootConsultar, 1050, 600);
+                consultar.setTitle("Consultar Bombeiros");
+                consultar.setScene(cenarioConsulta);
 
                 consultar.showAndWait();
             }
         };
+
         btnConsultar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaConsulta);
 
         stage.show();
