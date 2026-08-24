@@ -106,7 +106,7 @@ public class ConsultarBombeiros {
             @Override
             public void handle(MouseEvent event) {
 
-                AdicionarBombeiros telaAdicionar =
+                AdicionarBombeiros telaAdicionar = 
                         new AdicionarBombeiros();
 
                 telaAdicionar.mostrar();

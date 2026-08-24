@@ -75,7 +75,7 @@ public class AtualizarBombeiros {
         Label confirmar = new Label(
                 "Deseja confirmar a atualização do bombeiro?"
         );
-        confirmar.setLayoutX(210);
+        confirmar.setLayoutX(190);
         confirmar.setLayoutY(330);
 
         Button sim = new Button("Sim");
@@ -102,6 +102,28 @@ public class AtualizarBombeiros {
                 root.getChildren().add(sucesso);
             }
         };
+        Button proximo = new Button("Excluir Bombeiro");
+        proximo.setLayoutX(540);
+        proximo.setLayoutY(500);
+
+        EventHandler<MouseEvent> eventoProximo = new EventHandler<MouseEvent>() {
+
+        @Override
+        public void handle(MouseEvent event) {
+
+        ExcluirBombeiro telaExcluir =
+                new ExcluirBombeiro();
+
+        telaExcluir.mostrar();
+    }
+};
+
+proximo.addEventHandler(
+        MouseEvent.MOUSE_CLICKED,
+        eventoProximo
+);
+
+root.getChildren().add(proximo);
 
         sim.addEventHandler(
                 MouseEvent.MOUSE_CLICKED,
