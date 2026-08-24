@@ -120,11 +120,9 @@ public class App extends Application{
         });
 
         tabela.add(selecionar3,2,6);
-
         root.getChildren().addAll(titulo,pesquisa,filtros,quantidade,tabela);
-
         Scene scene=new Scene(root,900,500);
-
+        
         stage.setScene(scene);
         stage.setTitle("Consulta de Viaturas");
         stage.show();

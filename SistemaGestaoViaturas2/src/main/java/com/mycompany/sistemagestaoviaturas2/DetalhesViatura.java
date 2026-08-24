@@ -16,7 +16,6 @@ public class DetalhesViatura{
     public DetalhesViatura(Viatura viatura){
         this.viatura=viatura;
     }
-
     public void start(Stage stage){
 
         VBox root=new VBox(15);
@@ -35,13 +34,10 @@ public class DetalhesViatura{
 
         informacoes.add(new Label("Tipo"),0,0);
         informacoes.add(new Label(viatura.getTipo()),0,1);
-
         informacoes.add(new Label("Modelo"),1,0);
         informacoes.add(new Label(viatura.getModelo()),1,1);
-
         informacoes.add(new Label("Ano de Fabricacao"),0,2);
         informacoes.add(new Label(viatura.getAno()),0,3);
-
         informacoes.add(new Label("Localizacao"),1,2);
         informacoes.add(new Label(viatura.getLocal()),1,3);
 
@@ -61,9 +57,8 @@ public class DetalhesViatura{
         });
 
         excluir.setOnAction(e->{
-            App app=new App();
-            app.start(new Stage());
-            stage.close();
+            ConfirmarExclusao confirmar=new ConfirmarExclusao(viatura);
+            confirmar.start(new Stage());
         });
 
         voltar.setOnAction(e->{
@@ -74,11 +69,9 @@ public class DetalhesViatura{
 
         HBox botoes=new HBox(10);
         botoes.getChildren().addAll(editar,excluir,voltar);
-
         root.getChildren().addAll(cabecalho,informacoes,historico,botoes);
-
         Scene scene=new Scene(root,900,600);
-
+        
         stage.setScene(scene);
         stage.setTitle("Detalhes da Viatura");
         stage.show();

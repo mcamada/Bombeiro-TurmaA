@@ -46,9 +46,8 @@ public class CadastroViatura{
 
         Label tipo=new Label("Tipo");
         ComboBox<String> cbTipo=new ComboBox<>();
-
-        cbTipo.getItems().addAll("Combate a incendio","Resgate","Ambulancia");
-        cbTipo.setValue("Combate a incendio");
+        cbTipo.getItems().addAll("Combate a Incendio","Resgate","Ambulancia");
+        cbTipo.setValue("Combate a Incendio");
 
         Label placa=new Label("Placa");
         TextField txtPlaca=new TextField();
@@ -56,7 +55,6 @@ public class CadastroViatura{
 
         Label ano=new Label("Ano");
         ComboBox<String> cbAno=new ComboBox<>();
-
         cbAno.getItems().addAll("2026","2025","2024","2023","2022","2021","2020");
         cbAno.setValue("2023");
 
@@ -65,7 +63,6 @@ public class CadastroViatura{
 
         Label status=new Label("Status");
         ComboBox<String> cbStatus=new ComboBox<>();
-
         cbStatus.getItems().addAll("Disponivel","Em manutencao","Indisponivel");
         cbStatus.setValue("Disponivel");
 
@@ -84,22 +81,16 @@ public class CadastroViatura{
 
         formulario.add(prefixo,0,0);
         formulario.add(txtPrefixo,0,1);
-
         formulario.add(tipo,1,0);
         formulario.add(cbTipo,1,1);
-
         formulario.add(placa,0,2);
         formulario.add(txtPlaca,0,3);
-
         formulario.add(ano,1,2);
         formulario.add(cbAno,1,3);
-
         formulario.add(modelo,0,4);
         formulario.add(txtModelo,0,5);
-
         formulario.add(status,1,4);
         formulario.add(cbStatus,1,5);
-
         formulario.add(local,0,6);
         formulario.add(txtLocal,0,7);
 
@@ -123,7 +114,6 @@ public class CadastroViatura{
         salvar.setOnAction(e->{
 
             if(viatura==null){
-
                 Viatura novaViatura=new Viatura(
                         txtPrefixo.getText(),
                         txtPlaca.getText(),
@@ -134,9 +124,7 @@ public class CadastroViatura{
                         cbStatus.getValue(),
                         "0 Manutencoes"
                 );
-
             }else{
-
                 viatura.setPrefixo(txtPrefixo.getText());
                 viatura.setPlaca(txtPlaca.getText());
                 viatura.setModelo(txtModelo.getText());
@@ -152,11 +140,9 @@ public class CadastroViatura{
         });
 
         botoes.getChildren().addAll(cancelar,salvar);
-
         root.getChildren().addAll(titulo,formulario,botoes);
-
         Scene scene=new Scene(root,900,600);
-
+        
         stage.setScene(scene);
 
         if(viatura==null){
