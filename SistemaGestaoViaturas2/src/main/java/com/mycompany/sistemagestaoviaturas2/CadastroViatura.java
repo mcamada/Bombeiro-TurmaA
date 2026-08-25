@@ -1,6 +1,7 @@
 package com.mycompany.sistemagestaoviaturas2;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -11,12 +12,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CadastroViatura{
+public class CadastroViatura {
 
     private Viatura viatura;
 
     public CadastroViatura(){
-        this.viatura=null;
+        viatura=null;
     }
 
     public CadastroViatura(Viatura viatura){
@@ -28,17 +29,14 @@ public class CadastroViatura{
         VBox root=new VBox(10);
         root.setPadding(new Insets(10));
 
-        Label titulo=new Label();
-
-        if(viatura==null){
-            titulo.setText("Cadastrar Viatura");
-        }else{
-            titulo.setText("Editar Viatura");
-        }
+        Label titulo=new Label(viatura==null?"Cadastrar Viatura":"Editar Viatura");
+        titulo.setMaxWidth(Double.MAX_VALUE);
+        titulo.setAlignment(Pos.CENTER);
 
         GridPane formulario=new GridPane();
         formulario.setHgap(20);
         formulario.setVgap(10);
+        formulario.setAlignment(Pos.CENTER);
 
         Label prefixo=new Label("Prefixo");
         TextField txtPrefixo=new TextField();
@@ -95,15 +93,10 @@ public class CadastroViatura{
         formulario.add(txtLocal,0,7);
 
         HBox botoes=new HBox(10);
+        botoes.setAlignment(Pos.CENTER);
 
         Button cancelar=new Button("Cancelar");
-        Button salvar=new Button();
-
-        if(viatura==null){
-            salvar.setText("Cadastrar");
-        }else{
-            salvar.setText("Salvar Alteracoes");
-        }
+        Button salvar=new Button(viatura==null?"Cadastrar":"Salvar Alteracoes");
 
         cancelar.setOnAction(e->{
             App app=new App();
@@ -140,17 +133,13 @@ public class CadastroViatura{
         });
 
         botoes.getChildren().addAll(cancelar,salvar);
+
         root.getChildren().addAll(titulo,formulario,botoes);
+
         Scene scene=new Scene(root,900,600);
-        
+
         stage.setScene(scene);
-
-        if(viatura==null){
-            stage.setTitle("Cadastrar Viatura");
-        }else{
-            stage.setTitle("Editar Viatura");
-        }
-
+        stage.setTitle(viatura==null?"Cadastrar Viatura":"Editar Viatura");
         stage.show();
     }
 }
