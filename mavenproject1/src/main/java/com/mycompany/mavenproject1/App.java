@@ -16,7 +16,6 @@ public class App extends Application {
         TextField hora = new TextField();
         TextField local = new TextField();
         TextArea descricao = new TextArea();
-
         ComboBox<String> tipo = new ComboBox<>();
         tipo.getItems().addAll("Incêndio", "Acidente", "Resgate");
 
@@ -34,7 +33,11 @@ public class App extends Application {
 
         Button salvar = new Button("Salvar Ocorrência");
         salvar.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+        
         Button consultar = new Button("Consultar Ocorrências");
+        consultar.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+        
+        Button atualizar = new Button("Atualizar Ocorrência");
 
         GridPane tela = new GridPane();
         tela.setPadding(new Insets(20));
@@ -60,7 +63,8 @@ public class App extends Application {
         tela.add(new Label("Prioridade:"), 0, 9);
         tela.add(prioridade, 1, 9);
         tela.add(salvar, 3, 11);
-        tela.add(consultar, 0, 11);
+        tela.add(consultar, 1, 11);
+        tela.add(atualizar, 2, 11);
         
         consultar.setOnAction(e -> {
             Stage novaTela = new Stage();
@@ -102,16 +106,60 @@ public class App extends Application {
             consulta.add(buscar, 1, 5);
             consulta.add(new Label("Ocorrências:"), 0, 6);
             consulta.add(lista, 0, 7, 2, 1);
-            consulta.add(detalhes, 1, 8);
-          
-            
-            Scene cenaConsulta = new Scene(consulta, 600, 500);
+            consulta.add(detalhes, 1, 8);          
+            Scene cenaConsulta = new Scene(consulta, 500, 550);
             novaTela.setTitle("Consultar Ocorrências");
             novaTela.setScene(cenaConsulta);
             novaTela.show();
         });
-  
-        Scene cena = new Scene(tela, 820, 600);
+        atualizar.setOnAction(e -> {
+            Stage novaTela = new Stage();
+            Label tituloAtualizar = new Label(
+                    "Atualizar Ocorrência"
+            );
+            ComboBox<String> ocorrencia = new ComboBox<>();
+            ocorrencia.getItems().addAll(
+                    "01 - Incêndio - José Boiteu",
+                    "02 - Acidente - Apiúna",
+                    "03 - Resgate - Ibirama"
+            );
+            ComboBox<String> novoStatus = new ComboBox<>();
+            novoStatus.getItems().addAll(
+                    "Aberta",
+                    "Em andamento",
+                    "Finalizada"
+            );
+            TextArea novaDescricao = new TextArea();
+            ComboBox<String> novaEquipe = new ComboBox<>();
+            novaEquipe.getItems().addAll(
+                    "1ª Cia - Alfa",
+                    "1ª Cia - Bravo"
+            );
+            Button confirmar = new Button(
+                    "Confirmar Atualização"
+            );
+            GridPane atualizacao = new GridPane();
+            atualizacao.setPadding(new Insets(20));
+            atualizacao.setHgap(10);
+            atualizacao.setVgap(10);
+            atualizacao.add(tituloAtualizar,0, 0, 2, 1);
+            atualizacao.add(new Label("Ocorrência:"),0, 1);
+            atualizacao.add(ocorrencia,1, 1);
+            atualizacao.add(new Label("Status:"),0, 2);
+            atualizacao.add(novoStatus,1, 2);
+            atualizacao.add(new Label("Descrição:"),0, 3);
+            atualizacao.add(novaDescricao,1, 3);
+            atualizacao.add(new Label("Equipe:"),0, 4);
+            atualizacao.add(novaEquipe,1, 4);
+            atualizacao.add(confirmar,1, 5);
+            
+            Scene cenaAtualizacao =
+                    new Scene(atualizacao, 620, 400);
+            novaTela.setTitle("Atualizar Ocorrência");
+            novaTela.setScene(cenaAtualizacao);
+            novaTela.show();
+        });
+        Scene cena = new Scene(tela, 850, 600);
         stage.setTitle("Cadastrar Ocorrência");
         stage.setScene(cena);
         stage.show();
