@@ -22,7 +22,7 @@ public class App extends Application {
         VBox principal = new VBox();
         principal.setAlignment(Pos.TOP_CENTER);
         Text titulo = new Text("Bombeiros");
-        Text Cadrasto = new Text("CadrastoItem");
+        Text Cadrasto = new Text("Cadrasto Item");
         VBox geral = new VBox();
 
         Text nome = new Text("Nome item");
@@ -130,7 +130,8 @@ public class App extends Application {
                 pesquisa.addEventHandler(MouseEvent.MOUSE_CLICKED, lp);
                 excluir.addEventHandler(MouseEvent.MOUSE_CLICKED, hg);
                 principal.getStyleClass().add("EstiloBombeiro");
-                CItem.getStyleClass().add("EstiloBombeiro");
+               CItem.getStyleClass().add("estiloTextFild");
+                toponome.getStyleClass().add("EstiloBombeiro");
                 Scene scene = new Scene(CItem, 640, 640);
                 scene.getStylesheets().add("css/EstiloBombeiro.css");
                 janelaConsultarItem.setScene(scene);
@@ -188,6 +189,8 @@ public class App extends Application {
             Scene scene = new Scene(atlz, 640, 640);
             scene.getStylesheets().add("css/EstiloBombeiro.css");
              atlz.getStyleClass().add("EstiloBombeiro");
+              atlz.getStyleClass().add("EstiloBombeiro");
+                atualizar.getStyleClass().add("estiloTextFild");
             
             atulizaçao.setScene(scene);
            atulizaçao.show();
@@ -198,7 +201,7 @@ public class App extends Application {
         Scene scene = new Scene(principal, 640, 640);
           scene.getStylesheets().add("css/EstiloBombeiro.css");
            principal.getStyleClass().add("EstiloBombeiro");
-          
+          geral.getStyleClass().add("estiloTextFild");
         stage.setScene(scene);
 
         stage.show();
