@@ -145,7 +145,7 @@ public class ConsultarBombeiros {
         root.getChildren().add(Selecionar4);
 
         Scene scene = new Scene(root, 650, 620);
-
+        scene.getStylesheets().add("/css/style.css");
         stage.setScene(scene);
         stage.setTitle("Consultar Bombeiros");
         stage.show();

@@ -204,7 +204,7 @@ public class ExcluirBombeiro {
         root.getChildren().add(naoFinal);
 
         Scene scene = new Scene(root, 650, 600);
-
+        scene.getStylesheets().add("/css/style.css");
         stage.setScene(scene);
         stage.setTitle("Excluir Bombeiro");
 

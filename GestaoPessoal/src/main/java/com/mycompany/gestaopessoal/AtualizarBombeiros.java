@@ -160,7 +160,7 @@ root.getChildren().add(proximo);
 
         stage.setScene(scene);
         stage.setTitle("Atualizar Bombeiro");
-
+        scene.getStylesheets().add("/css/style.css");
         stage.show();
     }
 }

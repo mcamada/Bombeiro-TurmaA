@@ -170,7 +170,7 @@ public class AdicionarBombeiros {
 
         stage.setScene(scene);
         stage.setTitle("Adicionar Bombeiro");
-
+        scene.getStylesheets().add("/css/style.css");
         stage.show();
     }
 }
