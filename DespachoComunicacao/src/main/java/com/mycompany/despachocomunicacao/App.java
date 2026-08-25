@@ -69,11 +69,11 @@ public class App extends Application {
         navBar.getButtons().addAll(btnDashboard, btnOcorrencia, btnRecursos, btnComunicacoes);
 
         VBox dashboardView = new VBox();
-        dashboardView.setAlignment(Pos.CENTER); // Centraliza a VBox inteira
-        dashboardView.setSpacing(20); // Espaçamento entre a linha de cima e a de baixo
+        dashboardView.setAlignment(Pos.CENTER); 
+        dashboardView.setSpacing(20); 
 
         HBox statsTop = new HBox();
-        statsTop.setAlignment(Pos.CENTER); // Centraliza os textos na primeira linha
+        statsTop.setAlignment(Pos.CENTER);
         statsTop.getChildren().add(new Label("Total: 0    "));
         statsTop.getChildren().add(new Label("Abertas: 0    "));
         statsTop.getChildren().add(new Label("Despachadas: 0    "));
@@ -82,7 +82,7 @@ public class App extends Application {
         statsTop.getChildren().add(new Label("Alta Prioridade: 0    "));
 
         HBox statsBottom = new HBox();
-        statsBottom.setAlignment(Pos.CENTER); // Centraliza os textos na segunda linha
+        statsBottom.setAlignment(Pos.CENTER); 
         statsBottom.getChildren().add(new Label("Incêndios: 0    "));
         statsBottom.getChildren().add(new Label("Resgates: 0    "));
         statsBottom.getChildren().add(new Label("Pré-Hospitalar: 0    "));
