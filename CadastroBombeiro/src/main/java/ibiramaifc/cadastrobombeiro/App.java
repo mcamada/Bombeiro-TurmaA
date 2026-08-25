@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author aluno
  */
-public class Cadastro extends Application {
+public class App extends Application {
 
     public static ArrayList<Bombeiro> listaBombeiros = new ArrayList<>();
 
