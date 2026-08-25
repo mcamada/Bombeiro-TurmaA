@@ -1,94 +1,154 @@
 package com.mycompany.projetojavafx;
 import javafx.application.Application;
-import javafx.scene.control.TextField;
-import static javafx.application.Application.launch;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App extends Application {
-    TextField   txtld;
-    TextField   txtNascimento;
-    TextField   txtNome;
-    TextField   txtEspecialidade;
-    TextField   txtMatricula;
-    TextField   txtPatente;
-    TextField   txtContato;
-    TextField   txtStatus;
-    TextField   txtCpf;
-    
+
+    private Stage primaryStage;
+    private Scene cenaFormulario;
+    private Scene cenaSucesso;
+
+    private List<TextField> camposTexto = new ArrayList<>();
+
     @Override
     public void start(Stage stage) {
-        
-        Label titulo = new Label("Cadastro de bombeiros:");
+        this.primaryStage = stage;
 
-        titulo.setStyle(
-                "-fx-font-size: 30px;"
-                + "-fx-text-fill: black;"
-        );
-        
-        txtld = new TextField();
-        txtNascimento = new TextField();
-        txtNome = new TextField();
-        txtEspecialidade = new TextField();
-        txtMatricula = new TextField();
-        txtPatente = new TextField();
-        txtContato = new TextField();
-        txtStatus = new TextField();
-        txtCpf = new TextField();
-        
-        Label lId = new Label("Identificador do bombeiro:");
-        Label lNascimento = new Label("Data de nascimento:");
-        Label lNome = new Label("Nome completo:");
-        Label lEspecialidade = new Label("Especialidade:");
-        Label lMatricula = new Label("Matrícula:");
-        Label lPatente = new Label("Patente:");
-        Label lContato = new Label("Contato:");
-        Label lStatus = new Label("Status:");
-        Label lCpf = new Label("CPF:");
-        
-        GridPane formulario = new GridPane();
-        
-        formulario.add(lId, 0, 0);
-        formulario.add(txtld, 1, 0);
+        this.cenaFormulario = criarTelaFormulario();
+        this.cenaSucesso = criarTelaSucesso();
 
-        formulario.add(lNascimento, 0, 1);
-        formulario.add(txtNascimento, 1, 1);
-        
-        formulario.add(lNome, 0, 2);
-        formulario.add(txtNome, 1, 2);
-        
-        formulario.add(lEspecialidade, 0, 3);
-        formulario.add(txtEspecialidade, 1, 3);
-        
-        formulario.add(lMatricula, 0, 4);
-        formulario.add(txtMatricula, 1, 4);
-        
-        formulario.add(lPatente, 0, 5);
-        formulario.add(txtPatente, 1, 5);
-        
-        formulario.add(lContato, 0, 6);
-        formulario.add(txtContato, 1, 6);
-        
-        formulario.add(lStatus, 0, 7);
-        formulario.add(txtStatus, 1, 7);
-        
-        formulario.add(lCpf, 0, 8);
-        formulario.add(txtCpf, 1, 8);
-        
-        formulario.setAlignment(Pos.CENTER);
-        
-
-        
-
+        stage.setTitle("Cadastro de Bombeiros");
+        stage.setScene(cenaFormulario);
         stage.show();
+    }
 
+    private Scene criarTelaFormulario() {
+        VBox layoutPrincipal = new VBox(15);
+        layoutPrincipal.setStyle("-fx-background-color: #CC0000;");
+        layoutPrincipal.setAlignment(Pos.CENTER);
+        layoutPrincipal.setPrefSize(700, 500);
+
+        Label labelTitulo = new Label("Cadastro de bombeiros:");
+        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setTextFill(Color.BLACK);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(8);
+        grid.setAlignment(Pos.CENTER);
+
+        String[] campos = {
+            "Identificador do bombeiro:", "Data de nascimento:", "Nome completo:",
+            "Especialidade:", "Matrícula:", "Patente:",
+            "Contato:", "Status:", "CPF:"
+        };
+
+        for (int i = 0; i < campos.length; i++) {
+            Label label = new Label(campos[i]);
+            label.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+            label.setTextFill(Color.BLACK);
+            
+            TextField txtField = new TextField();
+            txtField.setPrefWidth(180);
+            txtField.setStyle("-fx-background-radius: 5; -fx-background-color: white;");
+
+            grid.add(label, 0, i);
+            grid.add(txtField, 1, i);
+
+            camposTexto.add(txtField);
+        }
+
+        Button btnCadastrar = criarBotaoEstilizado("Cadastrar", "#FFFFFF", "#000000");
+        Button btnCancelar = criarBotaoEstilizado("Cancelar", "#FFFFFF", "#CC0000");
+
+        btnCadastrar.setOnAction(e -> {
+            if (validarCampos()) {
+                primaryStage.setScene(cenaSucesso);
+            } else {
+                mostrarAlerta("Campos vazios", "Você deve preencher todos os campos antes de continuar.");
+            }
+        });
+
+        btnCancelar.setOnAction(e -> limparCampos());
+
+        HBox layoutBotoes = new HBox(20, btnCadastrar, btnCancelar);
+        layoutBotoes.setAlignment(Pos.CENTER);
+
+        layoutPrincipal.getChildren().addAll(labelTitulo, grid, layoutBotoes);
+        return new Scene(layoutPrincipal, 750, 550);
+    }
+
+    private Scene criarTelaSucesso() {
+        VBox layoutPrincipal = new VBox(30);
+        layoutPrincipal.setStyle("-fx-background-color: #CC0000;");
+        layoutPrincipal.setAlignment(Pos.CENTER);
+
+        VBox cardMensagem = new VBox();
+        cardMensagem.setStyle("-fx-background-color: white; -fx-background-radius: 15;");
+        cardMensagem.setPrefSize(350, 120);
+        cardMensagem.setMaxSize(350, 120);
+        cardMensagem.setAlignment(Pos.CENTER);
+
+        Label labelSucesso = new Label("Atualização de bombeiro bem sucedida!");
+        labelSucesso.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
+        labelSucesso.setTextFill(Color.BLACK);
+        labelSucesso.setStyle("-fx-text-alignment: center;");
+        cardMensagem.getChildren().add(labelSucesso);
+
+        Button btnVoltar = criarBotaoEstilizado("Voltar", "#FFFFFF", "#CC0000");
+        Button btnContinuar = criarBotaoEstilizado("Continuar", "#FFFFFF", "#000000");
+
+        btnVoltar.setOnAction(e -> primaryStage.setScene(cenaFormulario));
+
+        HBox layoutBotoes = new HBox(20, btnVoltar, btnContinuar);
+        layoutBotoes.setAlignment(Pos.CENTER);
+
+        layoutPrincipal.getChildren().addAll(cardMensagem, layoutBotoes);
+        return new Scene(layoutPrincipal, 750, 550);
+    }
+
+    private boolean validarCampos() {
+        for (TextField tf : camposTexto) {
+            if (tf.getText().trim().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void limparCampos() {
+        for (TextField tf : camposTexto) {
+            tf.clear();
+        }
+    }
+
+    private Button criarBotaoEstilizado(String texto, String corFundo, String corTexto) {
+        Button btn = new Button(texto);
+        btn.setPrefSize(120, 35);
+        btn.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        btn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: %s; -fx-background-radius: 15; -fx-cursor: hand;", corFundo, corTexto));
+        return btn;
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
-
 }
-
