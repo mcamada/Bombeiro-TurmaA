@@ -23,13 +23,13 @@ public class App extends Application {
         Label title = new Label("Sistema CAD - Corpo de Bombeiros");
         Button btnNovaOcorrencia = new Button("+ Nova Ocorrencia");
 
-//        btnNovaOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                NovaOcorrencia nova = new NovaOcorrencia();
-//                nova.abrir();
-//            }
-//        });
+        btnNovaOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                NovaOcorrencia nova = new NovaOcorrencia();
+                nova.abrir();
+            }
+        });
 
         topBar.setLeft(title);
         topBar.setRight(btnNovaOcorrencia);
@@ -42,29 +42,29 @@ public class App extends Application {
         Button btnRecursos = new Button("Recursos");
         Button btnComunicacoes = new Button("Comunicações");
 
-//        btnOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Ocorrencias janela = new Ocorrencias();
-//                janela.abrir();
-//            }
-//        });
+        btnOcorrencia.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Ocorrencias janela = new Ocorrencias();
+                janela.abrir();
+            }
+        });
 
-//        btnRecursos.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Recursos janela = new Recursos();
-//                janela.abrir();
-//            }
-//        });
+        btnRecursos.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Recursos janela = new Recursos();
+                janela.abrir();
+            }
+        });
 
-//        btnComunicacoes.setOnMouseClicked(new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                Comunicacoes janela = new Comunicacoes();
-//                janela.abrir();
-//            }
-//        });
+        btnComunicacoes.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Comunicacoes janela = new Comunicacoes();
+                janela.abrir();
+            }
+        });
 
         navBar.getButtons().addAll(btnDashboard, btnOcorrencia, btnRecursos, btnComunicacoes);
 
@@ -96,8 +96,9 @@ public class App extends Application {
 
         root.setTop(topBar);
         root.setCenter(mainContainer);
-
+               
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add("/resources/css/style.css");
         stage.setTitle("Sistema CAD - Corpo de Bombeiros");
         stage.setScene(scene);
         stage.show();
