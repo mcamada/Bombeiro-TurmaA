@@ -87,26 +87,59 @@ public class ExcluirBombeiro {
         Button nao4 = new Button("Não");
         nao4.setLayoutX(490);
         nao4.setLayoutY(260);
+        
+        Label bombeiro5 = new Label("5 - Bombeiro 5");
+        bombeiro5.setLayoutX(130);
+        bombeiro5.setLayoutY(320);
+
+        Label excluir5 = new Label("Excluir?");
+        excluir5.setLayoutX(150);
+        excluir5.setLayoutY(345);
+
+        Button sim5 = new Button("Sim");
+        sim5.setLayoutX(130);
+        sim5.setLayoutY(370);
+
+        Button nao5 = new Button("Não");
+        nao5.setLayoutX(180);
+        nao5.setLayoutY(370);
+
+
+        Label bombeiro6 = new Label("6 - Bombeiro 6");
+        bombeiro6.setLayoutX(440);
+        bombeiro6.setLayoutY(320);
+
+        Label excluir6 = new Label("Excluir?");
+        excluir6.setLayoutX(460);
+        excluir6.setLayoutY(345);
+
+        Button sim6 = new Button("Sim");
+        sim6.setLayoutX(440);
+        sim6.setLayoutY(370);
+
+        Button nao6 = new Button("Não");
+        nao6.setLayoutX(490);
+        nao6.setLayoutY(370);
 
         
         Label notificacao = new Label("NOTIFICAÇÃO DO SISTEMA:");
         notificacao.setLayoutX(240);
-        notificacao.setLayoutY(360);
+        notificacao.setLayoutY(390);
 
         Label confirmar = new Label(
                 "Confirmar a exclusão do Bombeiro?"
         );
 
         confirmar.setLayoutX(220);
-        confirmar.setLayoutY(400);
+        confirmar.setLayoutY(430);
 
         Button simFinal = new Button("Sim");
         simFinal.setLayoutX(200);
-        simFinal.setLayoutY(450);
+        simFinal.setLayoutY(480);
 
         Button naoFinal = new Button("Não");
         naoFinal.setLayoutX(400);
-        naoFinal.setLayoutY(450);
+        naoFinal.setLayoutY(480);
 
 
         EventHandler<MouseEvent> eventoSimFinal =
@@ -119,8 +152,8 @@ public class ExcluirBombeiro {
                         "Excluido com sucesso!"
                 );
 
-                sucesso.setLayoutX(240);
-                sucesso.setLayoutY(520);
+                sucesso.setLayoutX(253);
+                sucesso.setLayoutY(550);
 
                 root.getChildren().add(sucesso);
             }
@@ -153,7 +186,17 @@ public class ExcluirBombeiro {
         root.getChildren().add(excluir4);
         root.getChildren().add(sim4);
         root.getChildren().add(nao4);
-
+        
+        root.getChildren().add(bombeiro5);
+        root.getChildren().add(excluir5);
+        root.getChildren().add(sim5);
+        root.getChildren().add(nao5);
+        
+        root.getChildren().add(bombeiro6);
+        root.getChildren().add(excluir6);
+        root.getChildren().add(sim6);
+        root.getChildren().add(nao6);
+        
         root.getChildren().add(notificacao);
         root.getChildren().add(confirmar);
 
