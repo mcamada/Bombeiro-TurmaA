@@ -12,6 +12,7 @@ public void start(Stage stage) {
 stagePrincipal = stage;
 stagePrincipal.setTitle("Sistema de Gestão de Treinamentos");
 
+
 // Abre na Página 1 do Canva
 mudarTela(new Pagina1().getScene());
 stagePrincipal.show();
