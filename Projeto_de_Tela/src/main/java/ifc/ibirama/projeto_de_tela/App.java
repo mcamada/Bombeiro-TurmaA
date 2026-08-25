@@ -17,7 +17,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 /*
   Feito por VineC4rr91 e Txuli - Vulgo Vinícius Martins e Anthony Txuli dos Santos Lemes Martins
   Espero que esteja nota 10!
@@ -139,7 +138,9 @@ public class App extends Application {
             event.consume();
             }
         };
-
+        
+        atualizar1.getStyleClass().add("button");
+            
         cadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, eh);
         consultar.addEventHandler(MouseEvent.MOUSE_CLICKED, eh2);
         atualizar1.addEventHandler(MouseEvent.MOUSE_CLICKED, eh3);
@@ -150,6 +151,7 @@ public class App extends Application {
         excluir3.addEventHandler(MouseEvent.MOUSE_CLICKED, eh4);
         
         botoes.getButtons().addAll(consultar, cadastrar);
+                
         var region = new Region();
         var regiom = new Region();
         regiom.setPrefHeight(50);

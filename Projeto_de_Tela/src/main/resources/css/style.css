@@ -11,3 +11,11 @@
 .label {
     -fx-border-color: red;
 }
+
+.button {
+    -fx-color: gold;
+}
+
+.botoes {
+    color: yellow;
+}
