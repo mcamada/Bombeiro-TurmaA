@@ -9,11 +9,13 @@ public class Bombeiro {
 
     private String nome;
     private String patente;
+    private String funcao;
     private String situacao;
 
-    public Bombeiro(String nome, String patente, String situacao) {
+    public Bombeiro(String nome, String patente, String funcao, String situacao) {
         this.nome = nome;
         this.patente = patente;
+        this.funcao = funcao;
         this.situacao = situacao;
     }
 
@@ -24,13 +26,15 @@ public class Bombeiro {
     public String getPatente() {
         return patente;
     }
-
+    public String getFuncao() {
+        return funcao;
+    }
     public String getSituacao() {
         return situacao;
     }
 
     @Override
     public String toString() {
-        return nome + " - " + patente + " - " + situacao;
+        return nome + " - " + patente + " - " + funcao + " - " + situacao;
     }
 }

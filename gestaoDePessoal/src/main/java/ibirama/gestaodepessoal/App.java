@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import static javafx.application.Application.launch;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 
@@ -25,10 +26,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
 
-        Bombeiro bombeiro1 = new Bombeiro("Murilo Zeferino", "Soldado", "Afastado");
-        Bombeiro bombeiro2 = new Bombeiro("Rian Rescarolli", "Soldado", "Ativo");
-        Bombeiro bombeiro3 = new Bombeiro("Filipe Teske", "Soldado", "Ativo");
-        Bombeiro bombeiro4 = new Bombeiro("João Peixe", "Soldado", "Ativo");
+        Bombeiro bombeiro1 = new Bombeiro("Murilo Zeferino", "Soldado", "Combate de Incêndio", "Afastado");
+        Bombeiro bombeiro2 = new Bombeiro("Rian Rescarolli", "Soldado", "Operações Especiais", "Ativo");
+        Bombeiro bombeiro3 = new Bombeiro("Filipe Teske", "Soldado", "Operações Especiais", "Ativo");
+        Bombeiro bombeiro4 = new Bombeiro("João Peixe", "Soldado", "Mergulho", "Ativo");
 
         bombeiros.add(bombeiro1);
         bombeiros.add(bombeiro2);
@@ -89,25 +90,115 @@ public class App extends Application {
             public void handle(MouseEvent event) {
 
                 Stage cadastrar = new Stage();
+
                 cadastrar.initModality(Modality.APPLICATION_MODAL);
 
-                VBox rootCadastrar = new VBox();
-
                 VBox cabecalho = new VBox(5);
-                Label titulo = new Label("Sistema de Gerenciamento de Bombeiros");
-                titulo.setStyle("-fx-font-size: 22px; -fx-font-weight: bold;");
-                Label subtitulo = new Label("Corpo de Bombeiros - Gestão de Equipes");
-                cabecalho.setPadding(new Insets(15));
+                cabecalho.setPadding(new Insets(20, 20, 20, 20));
+                               
+                Label titulo = new Label( "Cadastrar Bombeiro");
+                titulo.setStyle("-fx-font-size: 22px;" + "-fx-font-weight: bold;");
+                Label subtitulo = new Label("Preencha todos os campos obrigatórios para cadastrar um novo bombeiro");
+
                 cabecalho.getChildren().addAll(titulo, subtitulo);
-                rootCadastrar.getChildren().add(cabecalho);
+               
+                VBox formulario = new VBox(15);
+                formulario.setPadding(new Insets(15, 20, 20, 20));
+                formulario.setMaxWidth(620);
+               
+                VBox nomeBox = new VBox(5);
+               
+                Label labelNome = new Label("Nome completo *");
+                TextField campoNome = new TextField();
+                campoNome.setPromptText("Digite o nome completo");
+               
+                nomeBox.getChildren().addAll(labelNome, campoNome);                
 
-                Scene cenarioCadastro = new Scene(rootCadastrar, 1050, 600);
+                HBox linhaCpfData = new HBox(40);
+               
+                VBox cpfBox = new VBox(5);
+     
+                Label labelCpf = new Label("CPF *");
+                TextField campoCpf = new TextField();
+                campoCpf.setPromptText("Digite o CPF");
 
+                cpfBox.getChildren().addAll(labelCpf, campoCpf);
+               
+                VBox dataBox = new VBox(5);
+               
+                Label labelData = new Label("Data de Nascimento *");
+                DatePicker campoData = new DatePicker();
+                campoData.setPromptText("Selecione a data");
+
+                dataBox.getChildren().addAll(labelData, campoData);
+
+                linhaCpfData.getChildren().addAll(cpfBox, dataBox);
+               
+                HBox linhaPatenteStatus = new HBox(40);
+               
+                VBox patenteBox = new VBox(5);
+               
+                Label labelPatente = new Label("Patente *");
+                ComboBox<String> comboPatente = new ComboBox<>();
+                comboPatente.getItems().addAll("Soldado", "Cabo", "Sargento", "Capitao");
+                comboPatente.setPromptText("Selecione a patente");
+               
+                patenteBox.getChildren().addAll(labelPatente, comboPatente);
+
+                VBox statusBox = new VBox(5);
+               
+                Label labelStatus = new Label("Status *");
+                ComboBox<String> comboStatus = new ComboBox<>();
+                comboStatus.getItems().addAll("Ativo", "Afastado", "Inativo");
+                comboStatus.setPromptText("Selecione o status");
+
+                statusBox.getChildren().addAll(labelStatus,comboStatus);
+
+                linhaPatenteStatus.getChildren().addAll(patenteBox, statusBox);
+               
+                HBox linhaContatoEspecialidade = new HBox(40);
+               
+                VBox contatoBox = new VBox(5);
+               
+                Label labelContato = new Label("Contato *");
+                TextField campoContato = new TextField();
+                campoContato.setPromptText("Digite o telefone");
+
+                contatoBox.getChildren().addAll(labelContato, campoContato);
+               
+                VBox especialidadeBox = new VBox(5);
+               
+                Label labelEspecialidade = new Label("Especialidade *");
+                ComboBox<String> comboEspecialidade = new ComboBox<>();
+                comboEspecialidade.getItems().addAll("Combate a incêndio", "Operações especiais", "Mergulho");
+                comboEspecialidade.setPromptText("Selecione a especialidade");
+
+                especialidadeBox.getChildren().addAll(labelEspecialidade,comboEspecialidade);
+               
+                linhaContatoEspecialidade.getChildren().addAll(contatoBox, especialidadeBox);
+               
+                formulario.setStyle("-fx-background-color: white;" + "-fx-background-radius: 8;" + "-fx-border-color: #D5D5D5;" + "-fx-border-radius: 8;" + "-fx-border-width: 1;");
+
+                formulario.getChildren().addAll(titulo, subtitulo, nomeBox, linhaCpfData, linhaPatenteStatus, linhaContatoEspecialidade);
+
+                BorderPane tela = new BorderPane();
+
+                tela.setTop(cabecalho);
+                tela.setCenter(formulario);
+               
+                Scene cenarioCadastro = new Scene(tela, 1050, 600);
+                cadastrar.setTitle("Cadastrar Bombeiros");
                 cadastrar.setScene(cenarioCadastro);
-
+               
                 cadastrar.showAndWait();
             }
         };
+
+        btnCadastrar.addEventHandler(
+                MouseEvent.MOUSE_CLICKED,
+                telaCadastro
+        );
+       
         btnCadastrar.addEventHandler(MouseEvent.MOUSE_CLICKED, telaCadastro);
 
         EventHandler<MouseEvent> telaConsulta = new EventHandler<MouseEvent>() {
