@@ -1,0 +1,46 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+.tela {
+    -fx-padding: 30px;
+    -fx-background-color: #ca1313;
+
+}
+
+.titulo {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+
+.campo {
+    -fx-pref-width: 190px;
+    -fx-padding: 8px;
+    -fx-border-color: #94a3b8;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+
+.button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+}
+
+
+.list-view {
+    -fx-border-color: #94a3b8;
+    -fx-border-radius: 5px;
+}
+

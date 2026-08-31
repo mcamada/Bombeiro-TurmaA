@@ -30,13 +30,15 @@ public class App extends Application {
         @Override
     public void start(Stage stage) {
 
+        
 // -----------------------------------------------------------------------------------------------
 // ---- Tela de Login ----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------------------------
 
-
+        
         VBox login = new VBox(20);  
-        login.setAlignment(Pos.CENTER);
+       login.setAlignment(Pos.CENTER);
+
         Scene scene = new Scene(login, 400, 400);
 
         Label tituloLogin = new Label("Login do Sistema");
@@ -70,6 +72,7 @@ public class App extends Application {
 
         login.getChildren().add(botoes1);
 
+       login.getStyleClass().addAll("tela");
 
 // -----------------------------------------------------------------------------------------------
 // ---- Lista de Itens ---------------------------------------------------------------------------
@@ -77,6 +80,7 @@ public class App extends Application {
 
 
         VBox tela2 = new VBox(10);
+        tela2.getStyleClass().add("tela2");
         Scene scene2 = new Scene(tela2, 400, 400);
         tela2.setAlignment(Pos.CENTER);
 
@@ -122,6 +126,7 @@ public class App extends Application {
 //-------------------------------------------------------------------------------------------------
         
         VBox telaCadastro = new VBox(20); 
+        telaCadastro.getStyleClass().add("tela");
         telaCadastro.setAlignment(Pos.CENTER);
         Scene sceneCadastro = new Scene(telaCadastro, 400, 400);
         
@@ -494,7 +499,7 @@ public class App extends Application {
 
         scene.getStylesheets().add("/css/style.css");
         stage.setTitle("Almoxarifado");
-        
+        scene.getStylesheets().add("/css/style.css");
         stage.setScene(scene);
         
         stage.show();
