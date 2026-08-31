@@ -15,28 +15,18 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     ObservableList<Bombeiro> lista = FXCollections.observableArrayList(
-            new Bombeiro("BM-2024-001", "Filipe Teske", "Sargento",
-                    "Combate a Incêndio", "Ativo"),
-            new Bombeiro("BM-2023-045", "Léo Heitor", "Cabo",
-                    "Resgate", "Ativo")
+            new Bombeiro("BM-2024-001", "Filipe Teske", "Sargento", "Combate a Incêndio", "Ativo"),
+            new Bombeiro("BM-2023-045", "Léo Heitor", "Cabo", "Resgate", "Ativo")
     );
 
     String[] patentes = {
-        "Soldado", "Cabo", "Sargento",
-        "Tenente", "Capitão"
+        "Soldado", "Cabo", "Sargento", "Tenente", "Capitão"
+
     };
 
-    String[] especialidades = {
-        "Combate a Incêndio",
-        "Resgate",
-        "Salvamento Aquático"
-    };
+    String[] especialidades = {"Combate a Incêndio", "Resgate", "Salvamento Aquático"};
 
-    String[] status = {
-        "Ativo",
-        "Afastado",
-        "Inativo"
-    };
+    String[] status = {"Ativo", "Afastado", "Inativo"};
 
     TableView<Bombeiro> tabela = new TableView<>();
 
@@ -57,7 +47,6 @@ public class App extends Application {
         campoPesquisa.setPromptText(
                 "Digite o nome do bombeiro"
         );
-
         ComboBox<String> filtroPatente
                 = new ComboBox<>();
 
@@ -71,14 +60,11 @@ public class App extends Application {
         filtroEspecialidade.getItems().add("Todas");
         filtroEspecialidade.getItems().addAll(especialidades);
         filtroEspecialidade.setValue("Todas");
-
         ComboBox<String> filtroStatus
                 = new ComboBox<>();
-
         filtroStatus.getItems().add("Todos");
         filtroStatus.getItems().addAll(status);
         filtroStatus.setValue("Todos");
-
         tabela.getColumns().addAll(
                 coluna("Matrícula", "matricula"),
                 coluna("Nome", "nome"),
@@ -86,56 +72,28 @@ public class App extends Application {
                 coluna("Especialidade", "especialidade"),
                 coluna("Status", "status")
         );
-
         tabela.setItems(lista);
-
         HBox topo = new HBox(
-                20,
-                titulo,
-                cadastrar
+                20, titulo, cadastrar
         );
-
         topo.setAlignment(
                 Pos.CENTER_LEFT
         );
-
         HBox botoes = new HBox(
-                8,
-                campoPesquisa,
-                pesquisar,
-                filtroPatente,
-                filtroEspecialidade,
-                filtroStatus,
-                limpar,
-                editar,
-                excluir
+                8, campoPesquisa, pesquisar, filtroPatente, filtroEspecialidade, filtroStatus, limpar, editar, excluir
         );
-
         VBox tela = new VBox(
-                15,
-                topo,
-                new Label("Filtros de Pesquisa"),
-                botoes,
-                tabela
+                15, topo, new Label("Filtros de Pesquisa"), botoes, tabela
         );
-
         tela.setPadding(
                 new Insets(25)
         );
-
-        VBox.setVgrow(
-                tabela,
-                Priority.ALWAYS
-        );
-
         stage.setTitle(
                 "Cadastro de Bombeiros"
         );
-
         stage.setScene(
                 new Scene(tela, 1200, 650)
         );
-
         stage.show();
     }
 
@@ -185,23 +143,17 @@ public class App extends Application {
                 confirmar,
                 cancelar
         );
-
-        formulario.setPadding(
-                new Insets(20)
-        );
-
+        
+        
         janela.setTitle(
                 "Cadastrar Bombeiro"
         );
-
         janela.setScene(
                 new Scene(formulario, 550, 500)
         );
-
         janela.show();
 
     }
-
     private ComboBox<String> criarCombo(String[] dados) {
 
         ComboBox<String> combo
@@ -211,12 +163,9 @@ public class App extends Application {
 
         return combo;
     }
-
     private HBox linha(
-            String texto,
-            Control campo
+            String texto, Control campo
     ) {
-
         Label label
                 = new Label(texto);
 
@@ -224,19 +173,14 @@ public class App extends Application {
 
         HBox linha
                 = new HBox(
-                        10,
-                        label,
-                        campo
+                        10, label, campo
                 );
-
         HBox.setHgrow(
                 campo,
                 Priority.ALWAYS
         );
-
         return linha;
     }
-
     private TableColumn<Bombeiro, String> coluna(
             String nome,
             String campo
@@ -253,7 +197,6 @@ public class App extends Application {
 
         return coluna;
     }
-
     public static class Bombeiro {
 
         private String matricula;
@@ -263,11 +206,7 @@ public class App extends Application {
         private String status;
 
         public Bombeiro(
-                String matricula,
-                String nome,
-                String patente,
-                String especialidade,
-                String status
+                String matricula, String nome, String patente, String especialidade, String status
         ) {
 
             this.matricula = matricula;
@@ -280,15 +219,12 @@ public class App extends Application {
         public String getMatricula() {
             return matricula;
         }
-
         public String getNome() {
             return nome;
         }
-
         public String getPatente() {
             return patente;
         }
-
         public String getEspecialidade() {
             return especialidade;
         }
