@@ -321,7 +321,13 @@ public class App extends Application {
         salvarAlteracao.setOnAction(event -> {
         
             
-            
+        Item novoItem = new Item(
+            nomeCampoAlterar.getText(),categoriaCampoAlterar.getText(),qtdCampoAlterar.getValue(),
+            unidadeCampoAlterar.getText(),localCampoAlterar.getText(),
+            nivelCampoAlterar.getValue()
+        );
+        
+        opcoes.add(novoItem);
        
         stage.setScene(sceneFinal);
         
@@ -424,39 +430,59 @@ public class App extends Application {
 
         
         alterar.setOnAction(event -> {
+            
         Item itemSelecionado =  listaOpcoes.getSelectionModel().getSelectedItem();
-        
-          if (itemSelecionado == null) {
 
-                Alert alerta = new Alert(Alert.AlertType.WARNING);
+            
+            if (itemSelecionado == null) {
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Nenhum item selecionado");
                 alerta.setHeaderText(null);
-                alerta.setContentText("Selecione um item para alterar.");
+                alerta.setContentText("Selecione um item para excluir.");
                 alerta.showAndWait();
 
                 return;
+            }else{
+       
+
+
+            nomeCampoAlterar.setText(itemSelecionado.getNome());
+            categoriaCampoAlterar.setText(itemSelecionado.getCategoria());
+            qtdCampoAlterar.getValueFactory().setValue(itemSelecionado.getQuantidade());
+            unidadeCampoAlterar.setText(itemSelecionado.getUnidadeMedida());
+            localCampoAlterar.setText(itemSelecionado.getLocal());
+            nivelCampoAlterar.getValueFactory().setValue(itemSelecionado.getNivelMinimo());
+
+            
+            opcoes.remove(itemSelecionado);
+
             }
-
-
-        nomeCampoAlterar.setText(itemSelecionado.getNome());
-        categoriaCampoAlterar.setText(itemSelecionado.getCategoria());
-        qtdCampoAlterar.getValueFactory().setValue(itemSelecionado.getQuantidade());
-        unidadeCampoAlterar.setText(itemSelecionado.getUnidadeMedida());
-        localCampoAlterar.setText(itemSelecionado.getLocal());
-        nivelCampoAlterar.getValueFactory().setValue(itemSelecionado.getNivelMinimo());
-
             
         stage.setScene(sceneAlterar);
             
         });
         
         consultar.setOnAction(event -> {
-        
-        nomeCampo.clear();
-        categoriaCampo.clear();
-        undMedidaCampo.clear();
-        locEstoqueCampo.clear();
-        
+        Item itemSelecionado =  listaOpcoes.getSelectionModel().getSelectedItem();
+            
+        if (itemSelecionado == null) {
+
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Nenhum item selecionado");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Selecione um item para excluir.");
+                alerta.showAndWait();
+
+                return;
+            }else{
+
+        nomeCampoCon.setText(itemSelecionado.getNome());
+        categoriaCampoCon.setText(itemSelecionado.getCategoria());
+        qtdInicialCampoCon.getValueFactory().setValue(itemSelecionado.getQuantidade());
+        undMedidaCampoCon.setText(itemSelecionado.getUnidadeMedida());
+        locEstoqueCampoCon.setText(itemSelecionado.getLocal());
+            }
         stage.setScene(sceneCon);
         });
         
