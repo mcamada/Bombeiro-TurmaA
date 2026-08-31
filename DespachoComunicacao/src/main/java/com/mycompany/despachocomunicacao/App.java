@@ -98,7 +98,7 @@ public class App extends Application {
         root.setCenter(mainContainer);
                
         Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add("/resources/css/style.css");
+        scene.getStylesheets().add("/css/style.css");
         stage.setTitle("Sistema CAD - Corpo de Bombeiros");
         stage.setScene(scene);
         stage.show();
