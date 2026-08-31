@@ -38,7 +38,7 @@ public class App3 extends Application {
         layoutPrincipal.setAlignment(Pos.CENTER);
 
         Label labelTitulo = new Label("Exclusão de bombeiro:");
-        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         labelTitulo.setTextFill(Color.BLACK);
 
         GridPane grid = new GridPane();
@@ -47,7 +47,7 @@ public class App3 extends Application {
         grid.setAlignment(Pos.CENTER);
 
         Label lblNome = new Label("Nome Do Bombeiro");
-        lblNome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        lblNome.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         lblNome.setTextFill(Color.BLACK);
 
         txtNome = new TextField();
@@ -55,7 +55,7 @@ public class App3 extends Application {
         txtNome.setStyle("-fx-background-radius: 5; -fx-background-color: white;");
 
         Label lblPatente = new Label("Patente:");
-        lblPatente.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        lblPatente.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         lblPatente.setTextFill(Color.BLACK);
 
         txtPatente = new TextField();
@@ -74,7 +74,6 @@ public class App3 extends Application {
             if (validarCampos()) {
                 primaryStage.setScene(cenaConfirmacao);
             } else {
-                mostrarAlerta("Campos vazios", "Por favor, preencha todos os campos antes de continuar.");
             }
         });
 
@@ -95,7 +94,7 @@ public class App3 extends Application {
         layoutFundo.setAlignment(Pos.CENTER);
 
         Label labelTitulo = new Label("Exclusão de bombeiro:");
-        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         labelTitulo.setTextFill(Color.BLACK);
 
         GridPane grid = new GridPane();
@@ -104,7 +103,7 @@ public class App3 extends Application {
         grid.setAlignment(Pos.CENTER);
 
         Label lblNome = new Label("Nome Do Bombeiro");
-        lblNome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        lblNome.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         lblNome.setTextFill(Color.BLACK);
 
         TextField txtNomeFalso = new TextField(txtNome != null ? txtNome.getText() : "");
@@ -112,7 +111,7 @@ public class App3 extends Application {
         txtNomeFalso.setStyle("-fx-background-radius: 5; -fx-background-color: white;");
 
         Label lblPatente = new Label("Patente:");
-        lblPatente.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        lblPatente.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         lblPatente.setTextFill(Color.BLACK);
 
         TextField txtPatenteFalso = new TextField(txtPatente != null ? txtPatente.getText() : "");
@@ -139,18 +138,18 @@ public class App3 extends Application {
         cardModal.setAlignment(Pos.CENTER);
 
         Label labelMensagem = new Label("Tem certeza que deseja\ncontinuar com a exclusão\ndo Bombeiro?");
-        labelMensagem.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        labelMensagem.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         labelMensagem.setTextFill(Color.BLACK);
         labelMensagem.setStyle("-fx-text-alignment: center;");
 
         Button btnSim = new Button("Sim");
         btnSim.setPrefSize(80, 30);
-        btnSim.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        btnSim.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         btnSim.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;");
 
         Button btnNao = new Button("Não");
         btnNao.setPrefSize(80, 30);
-        btnNao.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        btnNao.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         btnNao.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;");
 
         btnSim.setOnAction(e -> primaryStage.setScene(cenaSucesso));
@@ -177,7 +176,7 @@ public class App3 extends Application {
         cardMensagem.setAlignment(Pos.CENTER);
 
         Label labelSucesso = new Label("Exclusão de bombeiro\nBem sucedida!");
-        labelSucesso.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
+        labelSucesso.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         labelSucesso.setTextFill(Color.BLACK);
         labelSucesso.setStyle("-fx-text-alignment: center;");
         cardMensagem.getChildren().add(labelSucesso);
@@ -209,19 +208,10 @@ public class App3 extends Application {
     private Button criarBotaoEstilizado(String texto, String corFundo, String corTexto) {
         Button btn = new Button(texto);
         btn.setPrefSize(130, 40);
-        btn.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         btn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: %s; -fx-background-radius: 15; -fx-cursor: hand; -fx-text-alignment: center;", corFundo, corTexto));
         return btn;
     }
-
-    private void mostrarAlerta(String titulo, String mensagem) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
-
     public static void main(String[] args) {
         launch(args);
     }

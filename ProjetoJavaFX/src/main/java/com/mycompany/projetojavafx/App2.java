@@ -41,11 +41,11 @@ public class App2 extends Application {
         layoutPrincipal.setAlignment(Pos.CENTER);
 
         Label labelTitulo = new Label("Atualizaçao De Bombeiro");
-        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         labelTitulo.setTextFill(Color.BLACK);
 
         Label labelSelecionar = new Label("Selecionar Bombeiro");
-        labelSelecionar.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        labelSelecionar.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         labelSelecionar.setTextFill(Color.BLACK);
 
         txtSelecionarBombeiro = new TextField();
@@ -53,7 +53,7 @@ public class App2 extends Application {
         txtSelecionarBombeiro.setStyle("-fx-background-radius: 5; -fx-background-color: white;");
 
         Label labelDadosAtuais = new Label("Dados Atuais do Bombeiro");
-        labelDadosAtuais.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        labelDadosAtuais.setFont(Font.font("Arial", FontWeight.BOLD, 16));
         labelDadosAtuais.setTextFill(Color.BLACK);
 
         VBox tabelaEmBranco = new VBox();
@@ -77,7 +77,6 @@ public class App2 extends Application {
             if (!txtSelecionarBombeiro.getText().trim().isEmpty()) {
                 primaryStage.setScene(cenaEdicao);
             } else {
-                mostrarAlerta("Campo vazio", "Por favor, selecione um bombeiro antes de avançar.");
             }
         });
 
@@ -96,7 +95,7 @@ public class App2 extends Application {
         layoutPrincipal.setAlignment(Pos.CENTER);
 
         Label labelTitulo = new Label("Atualização de bombeiro:");
-        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         labelTitulo.setTextFill(Color.BLACK);
 
         GridPane grid = new GridPane();
@@ -110,7 +109,7 @@ public class App2 extends Application {
 
         for (int i = 0; i < campos.length; i++) {
             Label lbl = new Label(campos[i]);
-            lbl.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+            lbl.setFont(Font.font("Arial", FontWeight.BOLD, 14));
             lbl.setTextFill(Color.BLACK);
 
             TextField txtField = new TextField();
@@ -130,7 +129,6 @@ public class App2 extends Application {
             if (validarCamposEdicao()) {
                 primaryStage.setScene(cenaSucesso);
             } else {
-                mostrarAlerta("Campos vazios", "Por favor, preencha todos os campos para atualizar.");
             }
         });
 
@@ -155,7 +153,7 @@ public class App2 extends Application {
         cardMensagem.setAlignment(Pos.CENTER);
 
         Label labelSucesso = new Label("Atualização de bombeiro Bem\nsucedida");
-        labelSucesso.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
+        labelSucesso.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         labelSucesso.setTextFill(Color.BLACK);
         labelSucesso.setStyle("-fx-text-alignment: center;");
         cardMensagem.getChildren().add(labelSucesso);
@@ -184,19 +182,10 @@ public class App2 extends Application {
     private Button criarBotaoEstilizado(String texto, String corFundo, String corTexto) {
         Button btn = new Button(texto);
         btn.setPrefSize(130, 40);
-        btn.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         btn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: %s; -fx-background-radius: 15; -fx-cursor: hand; -fx-text-alignment: center;", corFundo, corTexto));
         return btn;
     }
-
-    private void mostrarAlerta(String titulo, String mensagem) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
-
     public static void main(String[] args) {
         launch(args);
     }

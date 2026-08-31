@@ -1,4 +1,5 @@
 package com.mycompany.projetojavafx;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -52,7 +53,7 @@ public class App1 extends Application {
 
         for (int i = 0; i < campos.length; i++) {
             Label lbl = new Label(campos[i]);
-            lbl.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+            lbl.setFont(Font.font("Arial", FontWeight.BOLD, 14));
             lbl.setTextFill(Color.BLACK);
 
             TextField txtField = new TextField();
@@ -72,7 +73,6 @@ public class App1 extends Application {
             if (validarCampos()) {
                 primaryStage.setScene(cenaResultado);
             } else {
-                mostrarAlerta("Campos vazios", "Por favor, preencha todos os campos para realizar a consulta.");
             }
         });
 
@@ -91,7 +91,7 @@ public class App1 extends Application {
         layoutPrincipal.setAlignment(Pos.CENTER);
 
         Label labelTitulo = new Label("Consultar Bombeiros:");
-        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         labelTitulo.setTextFill(Color.BLACK);
 
         GridPane gridBlocos = new GridPane();
@@ -122,7 +122,7 @@ public class App1 extends Application {
         container.setAlignment(Pos.CENTER);
 
         Label lblTitulo = new Label(titulo);
-        lblTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        lblTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         lblTitulo.setTextFill(Color.BLACK);
 
         VBox tabelaEmBranco = new VBox();
@@ -160,17 +160,9 @@ public class App1 extends Application {
     private Button criarBotaoEstilizado(String texto, String corFundo, String corTexto) {
         Button btn = new Button(texto);
         btn.setPrefSize(130, 40);
-        btn.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         btn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: %s; -fx-background-radius: 15; -fx-cursor: hand; -fx-text-alignment: center;", corFundo, corTexto));
         return btn;
-    }
-
-   private void mostrarAlerta(String titulo, String mensagem){
-       Alert alert = new Alert(Alert.AlertType.WARNING);
-       alert.setTitle(titulo);
-       alert.setHeaderText(null);
-       alert.setContentText(mensagem);
-       alert.showAndWait();
     }
 
     public static void main(String[] args) {

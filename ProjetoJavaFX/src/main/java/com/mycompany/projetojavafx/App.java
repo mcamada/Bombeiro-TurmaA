@@ -39,7 +39,7 @@ public class App extends Application {
         layoutPrincipal.setPrefSize(700, 500);
 
         Label labelTitulo = new Label("Cadastro de bombeiros:");
-        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+        labelTitulo.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         labelTitulo.setTextFill(Color.BLACK);
 
         GridPane grid = new GridPane();
@@ -55,7 +55,7 @@ public class App extends Application {
 
         for (int i = 0; i < campos.length; i++) {
             Label label = new Label(campos[i]);
-            label.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+            label.setFont(Font.font("Arial", FontWeight.BOLD, 12));
             label.setTextFill(Color.BLACK);
             
             TextField txtField = new TextField();
@@ -74,8 +74,8 @@ public class App extends Application {
         btnCadastrar.setOnAction(e -> {
             if (validarCampos()) {
                 primaryStage.setScene(cenaSucesso);
-            } else {
-                mostrarAlerta("Campos vazios", "Você deve preencher todos os campos antes de continuar.");
+            }else{
+                
             }
         });
 
@@ -100,7 +100,7 @@ public class App extends Application {
         cardMensagem.setAlignment(Pos.CENTER);
 
         Label labelSucesso = new Label("Atualização de bombeiro bem sucedida!");
-        labelSucesso.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
+        labelSucesso.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         labelSucesso.setTextFill(Color.BLACK);
         labelSucesso.setStyle("-fx-text-alignment: center;");
         cardMensagem.getChildren().add(labelSucesso);
@@ -135,19 +135,10 @@ public class App extends Application {
     private Button criarBotaoEstilizado(String texto, String corFundo, String corTexto) {
         Button btn = new Button(texto);
         btn.setPrefSize(120, 35);
-        btn.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         btn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: %s; -fx-background-radius: 15; -fx-cursor: hand;", corFundo, corTexto));
         return btn;
     }
-
-    private void mostrarAlerta(String titulo, String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.WARNING);
-        alerta.setTitle(titulo);
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensagem);
-        alerta.showAndWait();
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
