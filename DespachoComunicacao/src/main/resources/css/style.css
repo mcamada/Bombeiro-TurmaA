@@ -1,18 +1,18 @@
 .root {
-    -fx-background-color: #EAEAEA;
+    -fx-background-color:grey;
 }
 
 #tituloTela {
     -fx-font-family: serif;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: darkgreen; 
+    -fx-text-fill: blue; 
 }
 
 .label {
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-text-fill: crimson; 
+    -fx-text-fill: black; 
 }
 
 .text-field {
@@ -23,8 +23,8 @@
 }
 
 .button {
-    -fx-background-color: #2196F3;
+    -fx-background-color:red;
     -fx-text-fill: white;
     -fx-background-radius: 8;
-    -fx-padding: 8 20;
+    -fx-padding: 8 15;
 }

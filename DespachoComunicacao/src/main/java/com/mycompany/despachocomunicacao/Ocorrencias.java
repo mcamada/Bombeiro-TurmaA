@@ -19,7 +19,7 @@ public class Ocorrencias {
         ListView<String> lista = new ListView<String>(listaOcorrencias);
         root.setCenter(lista);
         Scene scene = new Scene(root, 400, 300);
-        scene.getStylesheets().add("/resources/css/style.css");
+        scene.getStylesheets().add("/css/style.css");
         stage.setTitle("Ocorrências");
         stage.setScene(scene);
         stage.showAndWait();

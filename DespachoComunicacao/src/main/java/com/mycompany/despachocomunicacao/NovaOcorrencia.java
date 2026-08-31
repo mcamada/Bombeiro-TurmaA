@@ -60,7 +60,7 @@ public class NovaOcorrencia {
         });       
         root.setBottom(btnSalvar);
         Scene scene = new Scene(root, 600, 500);
-        scene.getStylesheets().add("/resources/css/style.css");
+        scene.getStylesheets().add("/css/style.css");
         stage.setTitle("Nova Ocorrência");
         stage.setScene(scene);
         stage.showAndWait();

@@ -20,7 +20,7 @@ public class Recursos {
         centro.getChildren().add(new Label("Bombeiros: 0"));
         root.setCenter(centro);
         Scene scene = new Scene(root, 300, 200);
-        scene.getStylesheets().add("/resources/css/style.css");
+        scene.getStylesheets().add("/css/style.css");
         stage.setTitle("Recursos");
         stage.setScene(scene);
         stage.showAndWait();
