@@ -9,49 +9,68 @@ package ibiramaifc.cadastrobombeiro;
  * @author aluno
  */
 public class Bombeiro {
+
     private String nome;
-    private String cpf;
-    private String matricula;
-    private String cargo;
+    private String usuario;
+    private String senha;
     private String telefone;
-    private String unidade;
-    
-    public Bombeiro (String nome, String cpf, String matricula, String cargo, String telefone, String unidade){
+    private String cpf;
+    private String dataNascimento;
+
+    public Bombeiro(String nome, String usuario, String senha, String telefone, String cpf, String dataNascimento) {
         this.nome = nome;
-        this.cpf = cpf;
-        this.matricula = matricula;
-        this.cargo = cargo;
+        this.usuario = usuario;
+        this.senha = senha;
         this.telefone = telefone;
-        this.unidade = unidade;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
     }
-    public String getNome(){
+
+    public String getNome() {
         return nome;
     }
-    public String getCpf(){
-        return cpf;
-    }
-    public String getMatricula(){
-        return matricula;
-    }
-    public String getCargo(){
-        return cargo;
-    }
-    public String getTelefone(){
-        return telefone;
-    }
-    public String getUnidade(){
-        return unidade;
-    }
-    public void setNome(String nome){
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setTelefone(String telefone){
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public void setCargo(String cargo){
-        this.cargo = cargo;
+
+    public String getCpf() {
+        return cpf;
     }
-    public void setUnidade(String unidade){
-        this.unidade = unidade;
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
