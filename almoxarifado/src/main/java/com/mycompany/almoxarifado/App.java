@@ -75,10 +75,12 @@ public class App extends Application {
                 HBox botoes = new HBox();
 
                 Button confirmar = new Button("CONFIRMAR");
-                confirmar.setId("btcondirmar");
+                confirmar.setId("btconfirma");
                 confirmar.getStyleClass().add("button");
                 Button cancelar = new Button("CANCELAR");
                 cancelar.getStyleClass().add("button");
+                confirmar.getStyleClass().add("button");
+                confirmar.setId("btcancela");
 
                 Label obrigatorio = new Label("* Itens Obrigatórios");
                 obrigatorio.setFont(Font.font("Arial", FontPosture.REGULAR, 10));
@@ -140,6 +142,9 @@ public class App extends Application {
 
                 Button confirmar = new Button("CONFIRMAR");
                 confirmar.getStyleClass().add("button");
+                confirmar.setId("btconfirmar");
+                confirmar.getStyleClass().add("button");
+                
                 Button cancelar = new Button("CANCELAR");
                 cancelar.setId("btcancelar");
                 cancelar.getStyleClass().add("button");
@@ -210,7 +215,12 @@ public class App extends Application {
 
                 Button confirmar = new Button("CONFIRMAR");
                 confirmar.getStyleClass().add("button");
+                confirmar.setId("btcon");
+                confirmar.getStyleClass().add("button");
+                
                 Button cancelar = new Button("CANCELAR");
+                cancelar.getStyleClass().add("button");
+                cancelar.setId("btcan");
                 cancelar.getStyleClass().add("button");
 
                 Label obrigatorio = new Label("* Itens Obrigatórios");
@@ -267,7 +277,12 @@ public class App extends Application {
 
                 Button confirmar = new Button("CONFIRMAR");
                 confirmar.getStyleClass().add("button");
+                confirmar.setId("btconf");
+                confirmar.getStyleClass().add("button");
+                
                 Button cancelar = new Button("CANCELAR");
+                cancelar.getStyleClass().add("button");
+                cancelar.setId("btcanc");
                 cancelar.getStyleClass().add("button");
 
                 Label obrigatorio = new Label("* Itens Obrigatórios");
